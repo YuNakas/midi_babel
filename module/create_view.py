@@ -19,8 +19,8 @@ def create_view(page, conf):
                 ft.View(
                     "/midi",
                     [
-                        ft.AppBar(title=ft.Text("変換に使うマッピングファイルを選んでください"), bgcolor=ft.colors.SURFACE_VARIANT),
-                        create_dataTable(conf['mapping_files'], 'midi')
+                        ft.AppBar(title=ft.Text("変換したいmidiファイルを選んでください"), bgcolor=ft.colors.SURFACE_VARIANT),
+                        create_dataTable(conf['convert_midi_files'], 'midi')
                     ],
                 )
             )
