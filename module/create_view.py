@@ -2,6 +2,12 @@ import flet as ft
 from module.midi_converter import midi_converter
 
 def create_view(page, conf):
+    convert_type: str = ""
+    midi_file: str = ""
+    mapping_file: str = ""
+    key_mapping_from_file: str = ""
+    key_mapping_to_file: str = ""
+
     def route_change(e):
         page.views.clear()
         page.views.append(
@@ -9,9 +15,35 @@ def create_view(page, conf):
                 "/",
                 [
                     ft.AppBar(title=ft.Text('変換方式を選んでください'), bgcolor=ft.colors.SURFACE_VARIANT),
-                    ft.ElevatedButton("key mapping", on_click=to_midi),
-                    ft.ElevatedButton("midi mapping", on_click=to_midi)
-                ],
+                    ft.Container(ft.Column([
+                        ft.Row([
+                            ft.Container(
+                                margin = 8,
+                                width = 320,
+                                content = ft.OutlinedButton(
+                                    content=ft.Container(
+                                        padding = 16,
+                                        content = ft.Text("key mapping", size = 30)
+                                    ),
+                                    data="key_mapping", on_click=to_midi
+                                )
+                            )
+                        ], alignment=ft.MainAxisAlignment.CENTER),
+                        ft.Row([
+                            ft.Container(
+                                margin = 8,
+                                width = 320,
+                                content = ft.OutlinedButton(
+                                    content=ft.Container(
+                                        padding = 16,
+                                        content = ft.Text("midi mapping", size = 30)
+                                    ),
+                                    data="midi_mapping", on_click=to_midi
+                                )
+                            )
+                        ], alignment=ft.MainAxisAlignment.CENTER)
+                    ]))
+                ]
             )
         )
         if page.route == "/midi":
@@ -31,6 +63,36 @@ def create_view(page, conf):
                     [
                         ft.AppBar(title=ft.Text("変換に使うマッピングファイルを選んでください"), bgcolor=ft.colors.SURFACE_VARIANT),
                         create_dataTable(conf['mapping_files'], 'map')
+                    ],
+                )
+            )
+        if page.route == "/key_mapping_from":
+            page.views.append(
+                ft.View(
+                    "/key_mapping_from",
+                    [
+                        ft.AppBar(title=ft.Text("変換元のキーマップファイルを選んでください"), bgcolor=ft.colors.SURFACE_VARIANT),
+                        create_dataTable(conf['mapping_files'], 'key_mapping_from')
+                    ],
+                )
+            )
+        if page.route == "/key_mapping_to":
+            page.views.append(
+                ft.View(
+                    "/key_mapping_from",
+                    [
+                        ft.AppBar(title=ft.Text("変換先のキーマップファイルを選んでください"), bgcolor=ft.colors.SURFACE_VARIANT),
+                        create_dataTable(conf['mapping_files'], 'key_mapping_to')
+                    ],
+                )
+            )
+        if page.route == "/generate_converter":
+            page.views.append(
+                ft.View(
+                    "/generate_converter",
+                    [
+                        ft.AppBar(title=ft.Text("変換表を生成します"), bgcolor=ft.colors.SURFACE_VARIANT),
+                        create_dataTable(conf['mapping_files'], 'generate_converter')
                     ],
                 )
             )
@@ -65,8 +127,8 @@ def create_view(page, conf):
         page.go("/")
     
     def to_midi(e):
-        global convert_type
-        convert_type =  e.control.text
+        nonlocal convert_type
+        convert_type =  e.control.data
         page.go("/midi")
 
     def create_dataTable(strings, page_path):
@@ -88,12 +150,25 @@ def create_view(page, conf):
 
     def click_rowData(rowData, page_code): 
         if page_code == "midi": 
-            global midi_file
+            nonlocal midi_file
             midi_file = rowData
-            page.go("/map")
+            if convert_type == "key_mapping": 
+                page.go("/key_mapping_from")
+            if convert_type == "midi_mapping": 
+                page.go("/map")
         if page_code == "map":
-            global mapping_file
+            nonlocal mapping_file
             mapping_file = rowData
+            page.go("/convert")
+        if page_code == "key_mapping_from":
+            nonlocal key_mapping_from_file
+            key_mapping_from_file = rowData
+            page.go("/key_mapping_to")
+        if page_code == "key_mapping_to":
+            nonlocal key_mapping_to_file
+            key_mapping_to_file = rowData
+            page.go("/generate_converter")
+        if page_code == "generate_converter":
             page.go("/convert")
 
     page.on_route_change = route_change

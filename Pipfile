@@ -17,3 +17,4 @@ python_full_version = "3.11.6"
 
 [scripts]
 start = "python midi_babel.py"
+build = "python setup.py build"
