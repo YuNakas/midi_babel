@@ -165,7 +165,6 @@ def create_view(page, conf):
     
     def go_next_page_from_edit_key():
         nonlocal from_or_to
-        print(from_or_to)
         if from_or_to == "from":
             page.go("/key_mapping_to")
         if from_or_to == "to":
@@ -209,7 +208,6 @@ def create_view(page, conf):
     
     def save_map_cache():
         nonlocal gen_map_obj
-        print(gen_map_obj)
         yaml_util.save_yaml(gen_map_obj, conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName)
         nonlocal midi_file
         midi_filepath = conf["root_path"] + '/midi_ready/' + midi_file

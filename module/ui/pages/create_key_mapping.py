@@ -9,7 +9,6 @@ def create_key_mapping_view(go_edit_key_mapping_view, file_names):
         text_field_text = e.control.value
     
     def on_click_determined(text_field_text):
-        print("test")
         if (text_field_text + ".yml") in file_names or text_field_text == "":
             nonlocal annotation
             annotation.value = "すでに存在するファイル名か、ファイル名が入力されていません"

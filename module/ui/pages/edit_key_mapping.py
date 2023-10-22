@@ -55,7 +55,6 @@ def edit_key_mapping_view(go_next_page_from_edit_key, key_mapping_edit_file, con
 
     def next():
         save_setting()
-        print("hoge")
         go_next_page_from_edit_key()
     def save_setting():
         nonlocal key_map_obj
@@ -91,7 +90,6 @@ def edit_key_mapping_view(go_next_page_from_edit_key, key_mapping_edit_file, con
         nonlocal key_map_obj
         note_str = e.control.value.replace(" ", "")
         key_map_obj[e.control.data]["note"] = note_str.split(",")
-        print(key_map_obj)
     key_map_dataTable = ft.DataTable(
         width=800,
         data_row_min_height = 80,

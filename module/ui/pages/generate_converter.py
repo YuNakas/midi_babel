@@ -9,7 +9,6 @@ def generate_converter_view(create_cache_fileName, set_gen_map_obj, load_map_cac
     key_map_from_obj = load_key_mapping(key_mapping_from_file, conf)
     key_map_to_obj = load_key_mapping(key_mapping_to_file, conf)
     gen_map_obj = load_map_cache()
-    print(gen_map_obj)
 
     def create_convertTable():
         table = ft.DataTable(
