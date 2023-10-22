@@ -33,6 +33,7 @@ def edit_key_mapping_view(go_next_page_from_edit_key, key_mapping_edit_file, con
                     ft.DataCell(ft.TextField(
                         data=string,
                         value="",
+                        hint_text="カンマ区切りで入力(e.g. 3,5,8)",
                         on_change=lambda e: on_change_note(e)
                     )),
                     ft.DataCell(ft.OutlinedButton(
@@ -96,10 +97,30 @@ def edit_key_mapping_view(go_next_page_from_edit_key, key_mapping_edit_file, con
         data_row_min_height = 80,
         data_row_max_height = 80,
         columns=[
-            ft.DataColumn(ft.Text("File Name")),
-            ft.DataColumn(ft.Text("")),
-            ft.DataColumn(ft.Text("")),
-            ft.DataColumn(ft.Text(""))
+            ft.DataColumn(
+                label = ft.Container(
+                    width=80,
+                    content=ft.Text("ファイル名")
+                )
+            ),
+            ft.DataColumn(
+                label = ft.Container(
+                    width=60,
+                    content=ft.Text("優先ノート")
+                )
+            ),
+            ft.DataColumn(
+                label = ft.Container(
+                    width=320,
+                    content=ft.Text("ノート一覧")
+                )
+            ),
+            ft.DataColumn(
+                label = ft.Container(
+                    width=80,
+                    content=ft.Text("")
+                )
+            )
         ]
     )
     for key in key_map_obj.keys(): 
@@ -118,6 +139,7 @@ def edit_key_mapping_view(go_next_page_from_edit_key, key_mapping_edit_file, con
                     ft.TextField(
                         data=key,
                         value=", ".join(map(str, key_map_obj[key]["note"])),
+                        hint_text="カンマ区切りで入力(e.g. 3,5,8)",
                         on_change=lambda e: on_change_note(e)
                     )
                 ),
