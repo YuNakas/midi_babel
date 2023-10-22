@@ -1,8 +1,9 @@
-import mido, yaml
+import mido
+from module.util import yaml_util
 
-def midi_converter (root_path: str, midi_file_name: str, mapping_filename: str) : 
-    mapping = read_yaml(mapping_filename)
-    mid = mido.MidiFile(root_path + '/midi_ready/' + midi_file_name)
+def midi_converter (midi_filepath: str, converted_midi_filepath: str, mapping_filepath: str) : 
+    mapping = yaml_util.load_yaml(mapping_filepath)
+    mid = mido.MidiFile(midi_filepath)
     new_mid = mido.MidiFile()
     for i, track in enumerate(mid.tracks):
         new_track = mido.MidiTrack() 
@@ -18,7 +19,4 @@ def midi_converter (root_path: str, midi_file_name: str, mapping_filename: str) 
             else:
                 new_track.append(msg)
 
-    new_mid.save(root_path + '/midi_converted/converted_' + midi_file_name)
-
-def read_yaml (yaml_filename: str) : 
-    return yaml.safe_load(yaml_filename)
+    new_mid.save(converted_midi_filepath)

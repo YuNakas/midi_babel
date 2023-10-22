@@ -1,7 +1,7 @@
 import re
 import flet as ft
-from module.util.midi_converter import midi_converter
-from module.ui.pages import top, midi, map, key_mapping_from, key_mapping_to, create_key_mapping, edit_key_mapping, generate_converter, convert
+from module.util import midi_converter
+from module.ui.pages import top, midi, map, key_mapping_from, key_mapping_to, create_key_mapping, edit_key_mapping, generate_converter, convert_end
 from module import _init
 from module.util import create_midi_map, yaml_util
 
@@ -49,11 +49,10 @@ def create_view(page, conf):
             page.views.append(
                 generate_converter.generate_converter_view(create_cache_fileName, set_gen_map_obj, load_map_cache, save_map_cache, create_converter, key_mapping_from_file, key_mapping_to_file, conf)
             )
-        if page.route == "/convert":
+        if page.route == "/convert_end":
             page.views.append(
-                convert.convert_view(return_top)
+                convert_end.convert_end_view(return_top)
             )
-            midi_converter(conf["root_path"], midi_file, mapping_file)
         page.update()
     
     def return_top(e):
@@ -193,7 +192,7 @@ def create_view(page, conf):
             key_mapping_to_file = rowData
             page.go("/generate_converter")
         if page_code == "generate_converter":
-            page.go("/convert")
+            page.go("/convert_end")
 
     def set_gen_map_obj(key, value):
         nonlocal gen_map_obj
@@ -212,6 +211,12 @@ def create_view(page, conf):
         nonlocal gen_map_obj
         print(gen_map_obj)
         yaml_util.save_yaml(gen_map_obj, conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName)
+        nonlocal midi_file
+        midi_filepath = conf["root_path"] + '/midi_ready/' + midi_file
+        converted_midi_filepath = conf["root_path"] + '/midi_converted/converted_' + midi_file
+        mapping_filepath = conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName
+        midi_converter.midi_converter(midi_filepath, converted_midi_filepath, mapping_filepath)
+        page.go("/convert_end")
 
 
     def create_cache_fileName():

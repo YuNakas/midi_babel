@@ -1,8 +1,8 @@
 import flet as ft
 
-def convert_view(return_top):
-    ft.View(
-        "/convert",
+def convert_end_view(return_top):
+    return ft.View(
+        "/convert_end",
         [
             ft.AppBar(title=ft.Text("変換が完了しました"), bgcolor=ft.colors.SURFACE_VARIANT),
             ft.Row(

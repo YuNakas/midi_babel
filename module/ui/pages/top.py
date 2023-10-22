@@ -19,19 +19,19 @@ def top_view(to_midi) :
                         )
                     )
                 ], alignment=ft.MainAxisAlignment.CENTER),
-                ft.Row([
-                    ft.Container(
-                        margin = 8,
-                        width = 320,
-                        content = ft.OutlinedButton(
-                            content=ft.Container(
-                                padding = 16,
-                                content = ft.Text("midi mapping", size = 20)
-                            ),
-                            data="midi_mapping", on_click=to_midi
-                        )
-                    )
-                ], alignment=ft.MainAxisAlignment.CENTER)
+                # ft.Row([
+                #     ft.Container(
+                #         margin = 8,
+                #         width = 320,
+                #         content = ft.OutlinedButton(
+                #             content=ft.Container(
+                #                 padding = 16,
+                #                 content = ft.Text("midi mapping", size = 20)
+                #             ),
+                #             data="midi_mapping", on_click=to_midi
+                #         )
+                #     )
+                # ], alignment=ft.MainAxisAlignment.CENTER)
             ]))
         ]
     )
