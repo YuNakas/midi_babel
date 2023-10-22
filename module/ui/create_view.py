@@ -210,10 +210,14 @@ def create_view(page, conf):
         nonlocal gen_map_obj
         yaml_util.save_yaml(gen_map_obj, conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName)
         nonlocal midi_file
+        nonlocal key_mapping_from_file
+        nonlocal key_mapping_to_file
         midi_filepath = conf["root_path"] + '/midi_ready/' + midi_file
         converted_midi_filepath = conf["root_path"] + '/midi_converted/converted_' + midi_file
         mapping_filepath = conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName
-        midi_converter.midi_converter(midi_filepath, converted_midi_filepath, mapping_filepath)
+        key_mapping_from_filepath = conf["root_path"] + "/key_mapping/" + key_mapping_from_file
+        key_mapping_to_filepath = conf["root_path"] + "/key_mapping/" + key_mapping_to_file
+        midi_converter.midi_converter(midi_filepath, converted_midi_filepath, mapping_filepath, key_mapping_from_filepath, key_mapping_to_filepath)
         page.go("/convert_end")
 
 

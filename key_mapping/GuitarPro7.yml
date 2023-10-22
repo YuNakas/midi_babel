@@ -1,0 +1,77 @@
+china_hit:
+  note:
+  - '52'
+  primary: '52'
+crashHigh_hit:
+  note:
+  - '49'
+  primary: '49'
+crashMedium_hit:
+  note:
+  - '57'
+  primary: '57'
+highFloorTom_hit:
+  note:
+  - '50'
+  primary: '50'
+highTom_hit:
+  note:
+  - '48'
+  primary: '48'
+hihat_closed:
+  note:
+  - '42'
+  primary: '42'
+hihat_open:
+  note:
+  - '46'
+  primary: '46'
+hihat_pedal:
+  note:
+  - '44'
+  primary: '44'
+kick_hit:
+  note:
+  - '35'
+  - '36'
+  primary: '35'
+lowFloorTom_hit:
+  note:
+  - '41'
+  primary: '41'
+lowTom_hit:
+  note:
+  - '45'
+  primary: '45'
+midTom_hit:
+  note:
+  - '47'
+  primary: '47'
+ride_bell:
+  note:
+  - '53'
+  primary: '53'
+ride_edge:
+  note:
+  - '59'
+  primary: '59'
+ride_middle:
+  note:
+  - '51'
+  primary: '51'
+snare_hit:
+  note:
+  - '38'
+  primary: '38'
+snare_sideStick:
+  note:
+  - '37'
+  primary: '37'
+splash_hit:
+  note:
+  - '55'
+  primary: '55'
+veryLowTom_hit:
+  note:
+  - '43'
+  primary: '43'
