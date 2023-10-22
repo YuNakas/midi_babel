@@ -13,7 +13,7 @@ def top_view(to_midi) :
                         content = ft.OutlinedButton(
                             content=ft.Container(
                                 padding = 16,
-                                content = ft.Text("key mapping", size = 30)
+                                content = ft.Text("key mapping", size = 20)
                             ),
                             data="key_mapping", on_click=to_midi
                         )
@@ -26,7 +26,7 @@ def top_view(to_midi) :
                         content = ft.OutlinedButton(
                             content=ft.Container(
                                 padding = 16,
-                                content = ft.Text("midi mapping", size = 30)
+                                content = ft.Text("midi mapping", size = 20)
                             ),
                             data="midi_mapping", on_click=to_midi
                         )

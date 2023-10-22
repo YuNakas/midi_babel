@@ -6,12 +6,14 @@ def init_config():
     mapping_files = get_filename(os.listdir(root_path + '/mapping'), "yml")
     key_mapping_files = get_filename(os.listdir(root_path + '/key_mapping'), "yml")
     convert_midi_files = get_filename(os.listdir(root_path + '/midi_ready'), "mid")
+    map_cache_files = get_filename(os.listdir(root_path + "/key_mapping/_map_caches/"), "yml")
 
     return {
         "root_path": root_path,
         "mapping_files": mapping_files,
         "key_mapping_files": key_mapping_files,
-        "convert_midi_files": convert_midi_files
+        "convert_midi_files": convert_midi_files,
+        "map_cache_files": map_cache_files
     }
 
 # 特定の拡張子のファイル名を取り出す

@@ -4,7 +4,6 @@ from module.ui import create_view
 
 # 初期化処理
 conf = _init.init_config()
-print(conf)
 
 def main(page: ft.Page):
     page.title = "MIDI Babel"

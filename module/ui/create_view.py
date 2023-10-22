@@ -1,7 +1,9 @@
+import re
 import flet as ft
 from module.util.midi_converter import midi_converter
-from module.ui.pages import top, file_select, convert
+from module.ui.pages import top, midi, map, key_mapping_from, key_mapping_to, file_select, generate_converter, convert
 from module import _init
+from module.util import create_midi_map, yaml_util
 
 def create_view(page, conf):
     convert_type: str = ""
@@ -9,6 +11,8 @@ def create_view(page, conf):
     mapping_file: str = ""
     key_mapping_from_file: str = ""
     key_mapping_to_file: str = ""
+    map_cache_fileName = ""
+    gen_map_obj = {}
 
     def route_change(e):
         page.views.clear()
@@ -17,29 +21,27 @@ def create_view(page, conf):
         )
         if page.route == "/midi":
             page.views.append(
-                file_select.file_select_view(create_dataTable, conf['convert_midi_files'], "変換したいmidiファイルを選んでください", "midi")
+                midi.midi_view(create_dataTable, conf['convert_midi_files'])
             )
         if page.route == "/map":
             page.views.append(
-                file_select.file_select_view(create_dataTable, conf['mapping_files'], "変換に使うマッピングファイルを選んでください", "map")
+                map.map_view(create_dataTable, conf['mapping_files'])
             )
         if page.route == "/key_mapping_from":
             page.views.append(
-                file_select.file_select_view(create_dataTable, conf['key_mapping_files'], "変換元のキーマップファイルを選んでください", "key_mapping_from")
+                key_mapping_from.key_mapping_from_view(create_dataTable, conf['key_mapping_files'])
             )
         if page.route == "/key_mapping_to":
             page.views.append(
-                file_select.file_select_view(create_dataTable, conf['key_mapping_files'], "変換先のキーマップファイルを選んでください", "key_mapping_to")
+                key_mapping_to.key_mapping_to_view(create_dataTable, conf['key_mapping_files'])
             )
+        if page.route == "/create_key_mapping":
+            page.views.append()
+        if page.route == "/edit_key_mapping":
+            page.views.append()
         if page.route == "/generate_converter":
             page.views.append(
-                ft.View(
-                    "/generate_converter",
-                    [
-                        ft.AppBar(title=ft.Text("変換表を生成します"), bgcolor=ft.colors.SURFACE_VARIANT),
-                        create_dataTable(conf['mapping_files'], 'generate_converter')
-                    ],
-                )
+                generate_converter.generate_converter_view(create_cache_fileName, set_gen_map_obj, load_map_cache, save_map_cache, create_converter, key_mapping_from_file, key_mapping_to_file, conf)
             )
         if page.route == "/convert":
             page.views.append(
@@ -105,6 +107,29 @@ def create_view(page, conf):
         if page_code == "generate_converter":
             page.go("/convert")
 
+    def set_gen_map_obj(key, value):
+        nonlocal gen_map_obj
+        gen_map_obj[key] = value
+
+    def create_converter(key_map_from_obj, key_map_to_obj):
+        create_midi_map.create_midi_map(gen_map_obj, key_map_from_obj, key_map_to_obj)
+
+    def load_map_cache():
+        nonlocal gen_map_obj
+        if map_cache_fileName in conf["map_cache_files"]:
+            gen_map_obj = yaml_util.load_yaml(conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName)
+        return gen_map_obj
+    
+    def save_map_cache():
+        nonlocal gen_map_obj
+        print(gen_map_obj)
+        yaml_util.save_yaml(gen_map_obj, conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName)
+
+
+    def create_cache_fileName():
+        nonlocal map_cache_fileName
+        map_cache_fileName = (re.sub(r"\..*$", "", key_mapping_from_file) + "_" + re.sub(r"\..*$", "", key_mapping_to_file) + ".yml")
+        
     page.on_route_change = route_change
     page.on_view_pop = return_top
 
