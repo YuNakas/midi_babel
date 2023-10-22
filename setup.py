@@ -9,7 +9,6 @@ build_exe_options = {
     "include_files": [
         "midi_ready/", "midi_converted/", "key_mapping/", "mapping/"
     ]
-
 }
 
 base = None
