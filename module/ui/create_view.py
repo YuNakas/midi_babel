@@ -213,7 +213,7 @@ def create_view(page, conf):
         nonlocal key_mapping_from_file
         nonlocal key_mapping_to_file
         midi_filepath = conf["root_path"] + '/midi_ready/' + midi_file
-        converted_midi_filepath = conf["root_path"] + '/midi_converted/converted_' + midi_file
+        converted_midi_filepath = conf["root_path"] + '/midi_converted/' + re.sub(r"\..*$", "", midi_file) + "_converted_from_" + re.sub(r"\..*$", "", key_mapping_from_file) + "_to_" + re.sub(r"\..*$", "", key_mapping_to_file) + ".mid"
         mapping_filepath = conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName
         key_mapping_from_filepath = conf["root_path"] + "/key_mapping/" + key_mapping_from_file
         key_mapping_to_filepath = conf["root_path"] + "/key_mapping/" + key_mapping_to_file
