@@ -202,12 +202,16 @@ def create_view(page, conf):
 
     def load_map_cache():
         nonlocal gen_map_obj
+        nonlocal map_cache_fileName
         if map_cache_fileName in conf["map_cache_files"]:
             gen_map_obj = yaml_util.load_yaml(conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName)
+        else: 
+            gen_map_obj = {}
         return gen_map_obj
     
     def save_map_cache():
         nonlocal gen_map_obj
+        nonlocal map_cache_fileName
         yaml_util.save_yaml(gen_map_obj, conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName)
         nonlocal midi_file
         nonlocal key_mapping_from_file
