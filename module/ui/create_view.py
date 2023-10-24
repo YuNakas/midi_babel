@@ -24,11 +24,11 @@ def create_view(page):
         )
         if page.route == "/midi":
             page.views.append(
-                midi.midi_view(create_dataTable)
+                midi.midi_view(page.go)
             )
         if page.route == "/map":
             page.views.append(
-                map.map_view(create_dataTable)
+                map.map_view(page.go)
             )
         if page.route == "/key_mapping_from":
             page.views.append(
