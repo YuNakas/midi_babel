@@ -24,31 +24,31 @@ def create_view(page):
         )
         if page.route == "/midi":
             page.views.append(
-                midi.midi_view(create_dataTable, g.conf['convert_midi_files'])
+                midi.midi_view(create_dataTable)
             )
         if page.route == "/map":
             page.views.append(
-                map.map_view(create_dataTable, g.conf['mapping_files'])
+                map.map_view(create_dataTable)
             )
         if page.route == "/key_mapping_from":
             page.views.append(
-                key_mapping_from.key_mapping_from_view(create_mappingDataTable, go_create_key_mapping_view, g.conf['key_mapping_files'])
+                key_mapping_from.key_mapping_from_view(create_mappingDataTable, go_create_key_mapping_view)
             )
         if page.route == "/key_mapping_to":
             page.views.append(
-                key_mapping_to.key_mapping_to_view(create_mappingDataTable, go_create_key_mapping_view, g.conf['key_mapping_files'])
+                key_mapping_to.key_mapping_to_view(create_mappingDataTable, go_create_key_mapping_view)
             )
         if page.route == "/create_key_mapping":
             page.views.append(
-                create_key_mapping.create_key_mapping_view(go_edit_key_mapping_view, g.conf['key_mapping_files'])
+                create_key_mapping.create_key_mapping_view(go_edit_key_mapping_view)
             )
         if page.route == "/edit_key_mapping":
             page.views.append(
-                edit_key_mapping.edit_key_mapping_view(go_next_page_from_edit_key, key_mapping_edit_file, g.conf)
+                edit_key_mapping.edit_key_mapping_view(go_next_page_from_edit_key, key_mapping_edit_file)
             )
         if page.route == "/generate_converter":
             page.views.append(
-                generate_converter.generate_converter_view(create_cache_fileName, set_gen_map_obj, load_map_cache, save_map_cache, create_converter, key_mapping_from_file, key_mapping_to_file, g.conf)
+                generate_converter.generate_converter_view(create_cache_fileName, set_gen_map_obj, load_map_cache, save_map_cache, create_converter, key_mapping_from_file, key_mapping_to_file)
             )
         if page.route == "/convert_end":
             page.views.append(
@@ -58,7 +58,7 @@ def create_view(page):
     
     def return_top(e):
         # ファイル名等を再取得
-        g.conf = _init.init_config()
+        g.MY_CONF = _init.init_config()
 
         page.go("/")
 
@@ -203,8 +203,8 @@ def create_view(page):
     def load_map_cache():
         nonlocal gen_map_obj
         nonlocal map_cache_fileName
-        if map_cache_fileName in g.conf["map_cache_files"]:
-            gen_map_obj = yaml_util.load_yaml(g.conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName)
+        if map_cache_fileName in g.MY_CONF.map_cache_files:
+            gen_map_obj = yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/_map_caches/" + map_cache_fileName)
         else: 
             gen_map_obj = {}
         return gen_map_obj
@@ -212,15 +212,15 @@ def create_view(page):
     def save_map_cache():
         nonlocal gen_map_obj
         nonlocal map_cache_fileName
-        yaml_util.save_yaml(gen_map_obj, g.conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName)
+        yaml_util.save_yaml(gen_map_obj, g.MY_CONF.root_path + "/key_mapping/_map_caches/" + map_cache_fileName)
         nonlocal midi_file
         nonlocal key_mapping_from_file
         nonlocal key_mapping_to_file
-        midi_filepath = g.conf["root_path"] + '/midi_ready/' + midi_file
-        converted_midi_filepath = g.conf["root_path"] + '/midi_converted/' + re.sub(r"\..*$", "", midi_file) + "_converted_from_" + re.sub(r"\..*$", "", key_mapping_from_file) + "_to_" + re.sub(r"\..*$", "", key_mapping_to_file) + ".mid"
-        mapping_filepath = g.conf["root_path"] + "/key_mapping/_map_caches/" + map_cache_fileName
-        key_mapping_from_filepath = g.conf["root_path"] + "/key_mapping/" + key_mapping_from_file
-        key_mapping_to_filepath = g.conf["root_path"] + "/key_mapping/" + key_mapping_to_file
+        midi_filepath = g.MY_CONF.root_path + '/midi_ready/' + midi_file
+        converted_midi_filepath = g.MY_CONF.root_path + '/midi_converted/' + re.sub(r"\..*$", "", midi_file) + "_converted_from_" + re.sub(r"\..*$", "", key_mapping_from_file) + "_to_" + re.sub(r"\..*$", "", key_mapping_to_file) + ".mid"
+        mapping_filepath = g.MY_CONF.root_path + "/key_mapping/_map_caches/" + map_cache_fileName
+        key_mapping_from_filepath = g.MY_CONF.root_path + "/key_mapping/" + key_mapping_from_file
+        key_mapping_to_filepath = g.MY_CONF.root_path + "/key_mapping/" + key_mapping_to_file
         midi_converter.midi_converter(midi_filepath, converted_midi_filepath, mapping_filepath, key_mapping_from_filepath, key_mapping_to_filepath)
         page.go("/convert_end")
 

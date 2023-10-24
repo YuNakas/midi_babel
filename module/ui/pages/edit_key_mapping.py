@@ -1,10 +1,11 @@
 import flet as ft
 from module.util import yaml_util
+from _gv import g
 
-def edit_key_mapping_view(go_next_page_from_edit_key, key_mapping_edit_file, conf):
+def edit_key_mapping_view(go_next_page_from_edit_key, key_mapping_edit_file):
     new_key_name = ""
-    if key_mapping_edit_file in conf["key_mapping_files"]:
-        key_map_obj = yaml_util.load_yaml(conf["root_path"] + "/key_mapping/" + key_mapping_edit_file)
+    if key_mapping_edit_file in g.MY_CONF.key_mapping_files:
+        key_map_obj = yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/" + key_mapping_edit_file)
     else:
         key_map_obj = {}
     annotation = ft.Text(color=ft.colors.RED)
@@ -58,7 +59,7 @@ def edit_key_mapping_view(go_next_page_from_edit_key, key_mapping_edit_file, con
         go_next_page_from_edit_key()
     def save_setting():
         nonlocal key_map_obj
-        yaml_util.save_yaml(key_map_obj, conf["root_path"] + "/key_mapping/" + key_mapping_edit_file)
+        yaml_util.save_yaml(key_map_obj, g.MY_CONF.root_path + "/key_mapping/" + key_mapping_edit_file)
     determined_button = ft.Container(ft.Column([
         ft.Row([
             ft.OutlinedButton(
