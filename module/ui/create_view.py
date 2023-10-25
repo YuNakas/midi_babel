@@ -20,7 +20,7 @@ def create_view(page):
     def route_change(e):
         page.views.clear()
         page.views.append(
-            top.top_view(to_midi)
+            top.top_view(page.go)
         )
         if page.route == "/midi":
             page.views.append(
@@ -32,7 +32,7 @@ def create_view(page):
             )
         if page.route == "/key_mapping_from":
             page.views.append(
-                key_mapping_from.key_mapping_from_view(create_mappingDataTable, go_create_key_mapping_view)
+                key_mapping_from.key_mapping_from_view(page.go)
             )
         if page.route == "/key_mapping_to":
             page.views.append(
@@ -40,7 +40,7 @@ def create_view(page):
             )
         if page.route == "/create_key_mapping":
             page.views.append(
-                create_key_mapping.create_key_mapping_view(go_edit_key_mapping_view)
+                create_key_mapping.create_key_mapping_view(page.go)
             )
         if page.route == "/edit_key_mapping":
             page.views.append(
@@ -57,37 +57,13 @@ def create_view(page):
         page.update()
     
     def return_top(e):
-        # ファイル名等を再取得
-        g.MY_CONF = _init.init_config()
+        # コンフィグ情報を再取得
+        _init.init_config()
+
+        # 選択した情報などを初期化
+        _init.init_state()
 
         page.go("/")
-
-    def to_midi(e):
-        nonlocal convert_type
-        convert_type =  e.control.data
-        page.go("/midi")
-
-    def create_dataTable(strings, page_path):
-        table = ft.DataTable(
-            columns=[
-                ft.DataColumn(ft.Text("File Name"))
-            ],
-            rows=create_rows(strings, page_path),
-        )
-
-        # スクロール可能にする
-        lv = ft.ListView(expand=1)
-        lv.controls.append(table)
-        return lv
-
-    def create_rows(strings, page_path): 
-        rtnRows = []
-        for string in strings: 
-            rtnRows.append(ft.DataRow(
-                cells=[ft.DataCell(ft.Text(string))],
-                on_select_changed=lambda e: click_rowData(e.control.cells[0].content.value, page_path)
-            ))
-        return rtnRows
     
     def create_mappingDataTable(strings, page_path):
         table = ft.DataTable(
@@ -150,18 +126,6 @@ def create_view(page):
         if page_code == "key_mapping_to":
             from_or_to = "to"
         page.go("/create_key_mapping")
-    
-    def go_edit_key_mapping_view(string):
-        nonlocal from_or_to
-        nonlocal key_mapping_from_file
-        nonlocal key_mapping_to_file
-        nonlocal key_mapping_edit_file
-        if from_or_to == "from":
-            key_mapping_from_file = string + ".yml"
-        if from_or_to == "to":
-            key_mapping_to_file = string + ".yml"
-        key_mapping_edit_file = string + ".yml"
-        page.go("/edit_key_mapping")
     
     def go_next_page_from_edit_key():
         nonlocal from_or_to

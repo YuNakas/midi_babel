@@ -1,7 +1,15 @@
 import flet as ft
 from _gv import g
 
-def create_key_mapping_view(go_edit_key_mapping_view):
+def create_key_mapping_view(page_go):
+    def go_edit_key_mapping_view(string):
+        if g.MY_STATE.from_or_to == "from":
+            g.MY_STATE.set_key_mapping_from_file(string + ".yml")
+        if g.MY_STATE.from_or_to == "to":
+            g.MY_STATE.set_key_mapping_to_file(string + ".yml")
+        g.MY_STATE.set_key_mapping_edit_file(string + ".yml")
+        page_go("/edit_key_mapping")
+    
     text_field_text = ""
     annotation = ft.Text(color=ft.colors.RED)
 
@@ -16,13 +24,7 @@ def create_key_mapping_view(go_edit_key_mapping_view):
             textField_row.update()
         else:
             go_edit_key_mapping_view(text_field_text)
-    textField = ft.TextField(
-        on_change=change_text
-    ),
-    btn = ft.OutlinedButton(
-        text="決定",
-        on_click=lambda e: on_click_determined()
-    )
+    
     textField_row = ft.Row(
         controls=[
             ft.TextField(on_change=change_text),

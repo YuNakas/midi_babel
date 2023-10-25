@@ -5,7 +5,7 @@ from _gv import g
 
 def main(page: ft.Page):
     page.title = "MIDI Babel"
-    page.window_width = 800
+    page.window_width = 840
     page.window_height = 600
     create_view.create_view(page)
 
