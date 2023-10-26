@@ -32,5 +32,7 @@ def create_converter(mapping, key_mapping_from, key_mapping_to):
             rtnObj[note_from] = key_mapping_to[mapping[key]]["primary"]
     print(rtnObj)
     return rtnObj
-def convert_note(msg_note):
-    print()
+
+def drums_converter():
+    """channelを 9 に設定して、リズム楽器として読み込まれるように変換する"""
+    pass
