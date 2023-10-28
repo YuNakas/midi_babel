@@ -6,7 +6,7 @@ from _gv import g
 def main(page: ft.Page):
     page.title = "MIDI Babel"
     page.window_width = 840
-    page.window_height = 600
+    page.window_height = 800
     create_view.create_view(page)
 
 if __name__ == '__main__':

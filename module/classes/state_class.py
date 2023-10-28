@@ -7,6 +7,7 @@ class StateClass():
     key_mapping_edit_file: str
     map_cache_fileName: object
     gen_map_obj: object
+    midi_map_obj: object
     from_or_to: str
 
     def set_convert_type(self, convert_type: str):
@@ -32,6 +33,9 @@ class StateClass():
     
     def set_gen_map_obj(self, gen_map_obj):
         self.gen_map_obj = gen_map_obj
+
+    def set_midi_map_obj(self, midi_map_obj):
+        self.midi_map_obj = midi_map_obj
     
     def set_from_or_to(self, from_or_to):
         self.from_or_to = from_or_to

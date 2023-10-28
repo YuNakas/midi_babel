@@ -44,7 +44,7 @@ def create_view(page):
             )
         if page.route == "/generate_converter":
             page.views.append(
-                generate_converter.generate_converter_view(set_gen_map_obj, load_map_cache, save_map_cache, create_converter)
+                generate_converter.generate_converter_view(page.go)
             )
         if page.route == "/convert_end":
             page.views.append(
@@ -67,15 +67,6 @@ def create_view(page):
 
     def create_converter(key_map_from_obj, key_map_to_obj):
         create_midi_map.create_midi_map(gen_map_obj, key_map_from_obj, key_map_to_obj)
-
-    def load_map_cache():
-        nonlocal gen_map_obj
-        nonlocal map_cache_fileName
-        if map_cache_fileName in g.MY_CONF.map_cache_files:
-            gen_map_obj = yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/_map_caches/" + map_cache_fileName)
-        else: 
-            gen_map_obj = {}
-        return gen_map_obj
     
     def save_map_cache():
         nonlocal gen_map_obj

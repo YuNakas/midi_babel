@@ -2,24 +2,29 @@ import re
 import flet as ft
 from module.util import yaml_util
 from _gv import g
+from module.util import create_midi_map
 
 def load_key_mapping(file_path):
     return yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/" + file_path)
 
-def generate_converter_view(set_gen_map_obj, load_map_cache, save_map_cache, create_converter):
+def generate_converter_view(page_go):
     key_map_from_obj = load_key_mapping(g.MY_STATE.key_mapping_from_file)
     key_map_to_obj = load_key_mapping(g.MY_STATE.key_mapping_to_file)
-    gen_map_obj = load_map_cache()
-    create_cache_fileName()
+    g.MY_STATE.set_map_cache_fileName(re.sub(r"\..*$", "", g.MY_STATE.key_mapping_from_file) + "_" + re.sub(r"\..*$", "", g.MY_STATE.key_mapping_to_file) + ".yml")
 
-    def create_cache_fileName():
-        g.MY_STATE.set_map_cache_fileName(re.sub(r"\..*$", "", g.MY_STATE.key_mapping_from_file) + "_" + re.sub(r"\..*$", "", g.MY_STATE.key_mapping_to_file) + ".yml")
+    def load_map_cache():
+        map_cache_fileName = g.MY_STATE.map_cache_fileName
+
+        map_obj = {}
+        if map_cache_fileName in g.MY_CONF.map_cache_files:
+            map_obj = (yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/_map_caches/" + map_cache_fileName))
+
+        return map_obj
+    gen_map_obj = load_map_cache()
 
     def create_convertTable():
         table = ft.DataTable(
             width = 800,
-            data_row_min_height = 80,
-            data_row_max_height = 80,
             columns=[
                 ft.DataColumn(ft.Text("Convert From")),
                 ft.DataColumn(ft.Text("Convert To"))
@@ -40,14 +45,35 @@ def generate_converter_view(set_gen_map_obj, load_map_cache, save_map_cache, cre
                 cache_text = gen_map_obj[key]
             rtnRows.append(ft.DataRow(
                 cells=[
-                    ft.DataCell(ft.Text(key)),
-                    ft.DataCell(ft.Dropdown(
-                        key = key,
-                        hint_text = cache_text,
-                        options = create_options(key_map_to_obj.keys()),
-                        on_change = lambda e: change_dropdown(e)
+                    ft.DataCell(
+                        ft.Container(
+                            content = ft.Text(
+                                height=32,
+                                size=16,
+                                value=key,
+                                text_align = ft.TextAlign.CENTER
+                            ),
+                            height=32,
+                            padding=0,
+                            margin=0
+                        )
+                    ),
+                    ft.DataCell(
+                        ft.Container(
+                            content = ft.Dropdown(
+                                key = key,
+                                hint_text = cache_text,
+                                content_padding=ft.padding.symmetric(0, 8),
+                                height=32,
+                                options = create_options(key_map_to_obj.keys()),
+                                on_change = lambda e: change_dropdown(e)
+                            ),
+                            height=32,
+                            padding=0,
+                            margin=0
+                        )
                     )
-                )]
+                ]
             ))
         
         return rtnRows
@@ -60,11 +86,13 @@ def generate_converter_view(set_gen_map_obj, load_map_cache, save_map_cache, cre
         return rtnOptions
 
     def change_dropdown(e):
-        set_gen_map_obj(e.control.key, e.data)
+        nonlocal gen_map_obj
+        gen_map_obj[e.control.key] = e.data
 
     def next(e):
-        create_converter(key_map_from_obj, key_map_to_obj)
-        save_map_cache()
+        create_midi_map.create_midi_map(gen_map_obj, key_map_from_obj, key_map_to_obj)
+        yaml_util.save_yaml(gen_map_obj, g.MY_CONF.root_path + "/key_mapping/_map_caches/" + g.MY_STATE.map_cache_fileName)
+        page_go("/convert_end")
 
     return ft.View(
         "/generate_converter",
