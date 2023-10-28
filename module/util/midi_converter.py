@@ -30,7 +30,6 @@ def create_converter(mapping, key_mapping_from, key_mapping_to):
     for key in mapping.keys():
         for note_from in key_mapping_from[key]["note"]:
             rtnObj[note_from] = key_mapping_to[mapping[key]]["primary"]
-    print(rtnObj)
     return rtnObj
 
 def drums_converter():
