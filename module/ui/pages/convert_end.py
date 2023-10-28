@@ -9,11 +9,8 @@ def convert_end_view(return_top):
         + '/midi_converted/' + re.sub(r"\..*$", "", g.MY_STATE.midi_file)\
         + "_converted_from_" + re.sub(r"\..*$", "", g.MY_STATE.key_mapping_from_file)\
         + "_to_" + re.sub(r"\..*$", "", g.MY_STATE.key_mapping_to_file) + ".mid"
-    mapping_filepath = g.MY_CONF.root_path + "/key_mapping/_map_caches/" + g.MY_STATE.map_cache_fileName
-    key_mapping_from_filepath = g.MY_CONF.root_path + "/key_mapping/" + g.MY_STATE.key_mapping_from_file
-    key_mapping_to_filepath = g.MY_CONF.root_path + "/key_mapping/" + g.MY_STATE.key_mapping_to_file
-    midi_converter.midi_converter(midi_filepath, converted_midi_filepath, mapping_filepath, key_mapping_from_filepath, key_mapping_to_filepath)
-
+    midi_converter.midi_converter(midi_filepath, converted_midi_filepath)
+    
     return ft.View(
         "/convert_end",
         [
