@@ -7,15 +7,11 @@ from module.util import create_midi_map, yaml_util
 from module.ui.pages import top, midi, map, key_mapping_from, key_mapping_to, create_key_mapping, edit_key_mapping, generate_converter, convert_end
 
 def create_view(page):
-    convert_type: str = ""
     midi_file: str = ""
-    mapping_file: str = ""
     key_mapping_from_file: str = ""
     key_mapping_to_file: str = ""
-    key_mapping_edit_file: str = ""
     map_cache_fileName = ""
     gen_map_obj = {}
-    from_or_to = ""
 
     def route_change(e):
         page.views.clear()
@@ -36,7 +32,7 @@ def create_view(page):
             )
         if page.route == "/key_mapping_to":
             page.views.append(
-                key_mapping_to.key_mapping_to_view(create_mappingDataTable, go_create_key_mapping_view)
+                key_mapping_to.key_mapping_to_view(page.go)
             )
         if page.route == "/create_key_mapping":
             page.views.append(
@@ -44,11 +40,11 @@ def create_view(page):
             )
         if page.route == "/edit_key_mapping":
             page.views.append(
-                edit_key_mapping.edit_key_mapping_view(go_next_page_from_edit_key, key_mapping_edit_file)
+                edit_key_mapping.edit_key_mapping_view(page.go)
             )
         if page.route == "/generate_converter":
             page.views.append(
-                generate_converter.generate_converter_view(create_cache_fileName, set_gen_map_obj, load_map_cache, save_map_cache, create_converter, key_mapping_from_file, key_mapping_to_file)
+                generate_converter.generate_converter_view(set_gen_map_obj, load_map_cache, save_map_cache, create_converter)
             )
         if page.route == "/convert_end":
             page.views.append(
@@ -64,98 +60,6 @@ def create_view(page):
         _init.init_state()
 
         page.go("/")
-    
-    def create_mappingDataTable(strings, page_path):
-        table = ft.DataTable(
-            columns=[
-                ft.DataColumn(
-                    label = ft.Container(
-                        width=400,
-                        content=ft.Text("File Name")
-                    ),
-                ),
-                ft.DataColumn(ft.Text("")),
-                ft.DataColumn(ft.Text(""))
-            ],
-            rows=create_mappingRows(strings, page_path),
-        )
-
-        # スクロール可能にする
-        lv = ft.ListView(expand=1)
-        lv.controls.append(table)
-        return lv
-
-    def create_mappingRows(strings, page_path): 
-        rtnRows = []
-        for string in strings: 
-            rtnRows.append(ft.DataRow(
-                cells=[
-                    ft.DataCell(ft.Text(string)),
-                    ft.DataCell(ft.OutlinedButton(
-                        text="選択",
-                        data=string,
-                        on_click=lambda e: click_rowData(e.control.data, page_path)
-                    )),
-                    ft.DataCell(ft.OutlinedButton(
-                        text="編集",
-                        data=string,
-                        on_click=lambda e: click_edit_button(e.control.data, page_path)
-                    ))
-                ]
-            ))
-        return rtnRows
-    
-    def click_edit_button(file_name, page_code):
-        nonlocal from_or_to
-        nonlocal key_mapping_from_file
-        nonlocal key_mapping_to_file
-        nonlocal key_mapping_edit_file
-        if page_code == "key_mapping_from":
-            from_or_to = "from"
-            key_mapping_from_file = file_name
-        if page_code == "key_mapping_to":
-            from_or_to = "to"
-            key_mapping_to_file = file_name
-        key_mapping_edit_file = file_name
-        page.go("/edit_key_mapping")
-    
-    def go_create_key_mapping_view(page_code): 
-        nonlocal from_or_to
-        if page_code == "key_mapping_from":
-            from_or_to = "from"
-        if page_code == "key_mapping_to":
-            from_or_to = "to"
-        page.go("/create_key_mapping")
-    
-    def go_next_page_from_edit_key():
-        nonlocal from_or_to
-        if from_or_to == "from":
-            page.go("/key_mapping_to")
-        if from_or_to == "to":
-            page.go("/generate_converter")
-
-    def click_rowData(rowData, page_code):
-        nonlocal midi_file
-        nonlocal mapping_file
-        nonlocal key_mapping_from_file
-        nonlocal key_mapping_to_file
-        if page_code == "midi": 
-            midi_file = rowData
-            if convert_type == "key_mapping": 
-                page.go("/key_mapping_from")
-            if convert_type == "midi_mapping": 
-                page.go("/map")
-        if page_code == "map":
-            mapping_file = rowData
-            page.go("/convert")
-        if page_code == "key_mapping_from":
-            key_mapping_from_file = rowData
-            page.go("/key_mapping_to")
-        if page_code == "key_mapping_to":
-            key_mapping_to_file = rowData
-            page.go("/generate_converter")
-        if page_code == "generate_converter":
-            page.go("/convert_end")
 
     def set_gen_map_obj(key, value):
         nonlocal gen_map_obj
@@ -187,11 +91,6 @@ def create_view(page):
         key_mapping_to_filepath = g.MY_CONF.root_path + "/key_mapping/" + key_mapping_to_file
         midi_converter.midi_converter(midi_filepath, converted_midi_filepath, mapping_filepath, key_mapping_from_filepath, key_mapping_to_filepath)
         page.go("/convert_end")
-
-
-    def create_cache_fileName():
-        nonlocal map_cache_fileName
-        map_cache_fileName = (re.sub(r"\..*$", "", key_mapping_from_file) + "_" + re.sub(r"\..*$", "", key_mapping_to_file) + ".yml")
         
     page.on_route_change = route_change
     page.on_view_pop = return_top

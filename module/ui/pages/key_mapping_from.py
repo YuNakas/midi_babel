@@ -13,6 +13,7 @@ def key_mapping_from_view(page_go):
 
     def click_edit(row_data):
         g.MY_STATE.set_key_mapping_from_file(row_data)
+        g.MY_STATE.set_from_or_to("from")
         page_go("/edit_key_mapping")
     
     return ft.View(

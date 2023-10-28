@@ -1,3 +1,4 @@
+import re
 import flet as ft
 from module.util import yaml_util
 from _gv import g
@@ -5,11 +6,14 @@ from _gv import g
 def load_key_mapping(file_path):
     return yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/" + file_path)
 
-def generate_converter_view(create_cache_fileName, set_gen_map_obj, load_map_cache, save_map_cache, create_converter, key_mapping_from_file, key_mapping_to_file):
-    create_cache_fileName()
-    key_map_from_obj = load_key_mapping(key_mapping_from_file)
-    key_map_to_obj = load_key_mapping(key_mapping_to_file)
+def generate_converter_view(set_gen_map_obj, load_map_cache, save_map_cache, create_converter):
+    key_map_from_obj = load_key_mapping(g.MY_STATE.key_mapping_from_file)
+    key_map_to_obj = load_key_mapping(g.MY_STATE.key_mapping_to_file)
     gen_map_obj = load_map_cache()
+    create_cache_fileName()
+
+    def create_cache_fileName():
+        g.MY_STATE.set_map_cache_fileName(re.sub(r"\..*$", "", g.MY_STATE.key_mapping_from_file) + "_" + re.sub(r"\..*$", "", g.MY_STATE.key_mapping_to_file) + ".yml")
 
     def create_convertTable():
         table = ft.DataTable(
