@@ -7,7 +7,6 @@ def midi_converter(midi_filepath: str, converted_midi_filepath: str):
     new_mid = mido.MidiFile()
     try:
         new_mid.tracks.append(g.MY_MIDI.setting_track)
-        print(g.MY_MIDI.setting_track)
     except:
         pass
     new_track = mido.MidiTrack()
