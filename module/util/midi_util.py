@@ -23,7 +23,6 @@ def read_midi_obj(filepath: str):
         return False
 
     mid = mido.MidiFile(filepath)
-    # yaml_util.save_yaml(mid, g.MY_CONF.root_path + "/tests/yml/test1.yml")
     for i, track in enumerate(mid.tracks):
         track_name = get_track_name(track)
         if i == 0 and check_setting_track(track):
@@ -33,6 +32,5 @@ def read_midi_obj(filepath: str):
         else:
             midi_track_names.append(track_name)
             rtn_midi_tracks_obj[track_name] = track
-    # yaml_util.save_yaml(rtn_midi_tracks_obj, g.MY_CONF.root_path + "/tests/yml/test2.yml")
-    g.MY_STATE.set_midi_track_names(rtn_midi_tracks_obj)
+    g.MY_STATE.set_midi_track_names(midi_track_names)
     return rtn_midi_tracks_obj
