@@ -5,7 +5,7 @@ from module.ui.components import data_table
 def midi_view(page_go):
     def on_click(data):
         g.MY_STATE.set_midi_file(data)
-        page_go("/key_mapping_from")
+        page_go("/select_midi_track")
     
     return ft.View(
         "/midi",

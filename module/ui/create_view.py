@@ -1,5 +1,5 @@
 from module import _init
-from module.ui.pages import top, midi, map, key_mapping_from, key_mapping_to, create_key_mapping, edit_key_mapping, generate_converter, convert_end
+from module.ui.pages import top, midi, select_midi_track, map, key_mapping_from, key_mapping_to, create_key_mapping, edit_key_mapping, generate_converter, convert_end
 
 def create_view(page):
     def route_change(e):
@@ -10,6 +10,10 @@ def create_view(page):
         if page.route == "/midi":
             page.views.append(
                 midi.midi_view(page.go)
+            )
+        if page.route == "/select_midi_track":
+            page.views.append(
+                select_midi_track.select_midi_track_view(page.go)
             )
         if page.route == "/map":
             page.views.append(
@@ -47,6 +51,9 @@ def create_view(page):
 
         # 選択した情報などを初期化
         _init.init_state()
+
+        # midiファイルの情報を初期化
+        _init.init_midi()
 
         page.go("/")
         

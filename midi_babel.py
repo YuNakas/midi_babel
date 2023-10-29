@@ -13,5 +13,6 @@ if __name__ == '__main__':
     # 初期化処理
     _init.init_config()
     _init.init_state()
+    _init.init_midi()
     
     ft.app(target=main)
