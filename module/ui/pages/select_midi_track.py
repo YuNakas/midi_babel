@@ -6,12 +6,10 @@ def select_midi_track_view(page_go):
     midi_filepath = g.MY_CONF.root_path + "/midi_ready/" + g.MY_STATE.midi_file
     midi_obj = midi_util.read_midi_obj(midi_filepath)
 
-    def click_melody_button(e):
-        g.MY_MIDI.set_track(midi_obj[e.control.data], "melody")
-        page_go("/key_mapping_from")
-
-    def click_rhythm_button(e):
-        g.MY_MIDI.set_track(midi_obj[e.control.data], "rhythm")
+    def click_button(e, button_type: str):
+        if "setting_track" in midi_obj.keys():
+            g.MY_MIDI.set_setting_track(midi_obj["setting_track"])
+        g.MY_MIDI.set_track(midi_obj[e.control.data], button_type)
         page_go("/key_mapping_from")
 
     def create_row(string):
@@ -29,7 +27,7 @@ def select_midi_track_view(page_go):
                         content = ft.OutlinedButton(
                             text="メロディトラックとして選択",
                             data=string,
-                            on_click=click_melody_button
+                            on_click=lambda e: click_button(e, "melody")
                         )
                     )
                 ),
@@ -39,7 +37,7 @@ def select_midi_track_view(page_go):
                         content = ft.OutlinedButton(
                             text="リズムトラックとして選択",
                             data=string,
-                            on_click=click_rhythm_button
+                            on_click=lambda e: click_button(e, "rhythm")
                         )
                     )
                 )
