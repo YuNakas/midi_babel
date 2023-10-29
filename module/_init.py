@@ -1,27 +1,11 @@
-import os, pathlib
-import re
+from _gv import g
+from module.classes import conf_class, state_class, midi_class
 
 def init_config():
-    root_path: str = str(pathlib.Path('__file__').resolve().parent)
-    mapping_files = get_filename(os.listdir(root_path + '/mapping'), "yml")
-    key_mapping_files = get_filename(os.listdir(root_path + '/key_mapping'), "yml")
-    convert_midi_files = get_filename(os.listdir(root_path + '/midi_ready'), "mid")
-    map_cache_files = get_filename(os.listdir(root_path + "/key_mapping/_map_caches/"), "yml")
+    g.MY_CONF = conf_class.ConfClass()
 
-    return {
-        "root_path": root_path,
-        "mapping_files": mapping_files,
-        "key_mapping_files": key_mapping_files,
-        "convert_midi_files": convert_midi_files,
-        "map_cache_files": map_cache_files
-    }
+def init_state():
+    g.MY_STATE = state_class.StateClass()
 
-# 特定の拡張子のファイル名を取り出す
-def get_filename(strings: list, extension: str):
-    rtnList = []
-    for string in strings: 
-        match = re.search(r"\." + extension + "$", string)
-        if match:
-            rtnList.append(string)
-            
-    return rtnList
+def init_midi():
+    g.MY_MIDI = midi_class.MidiClass()

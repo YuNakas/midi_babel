@@ -1,6 +1,6 @@
 import flet as ft
 
-def top_view(to_midi) :
+def top_view(page_go) :
     return ft.View(
         "/",
         [
@@ -15,23 +15,10 @@ def top_view(to_midi) :
                                 padding = 16,
                                 content = ft.Text("key mapping", size = 20)
                             ),
-                            data="key_mapping", on_click=to_midi
+                            data="key_mapping", on_click=lambda e: page_go("/midi")
                         )
                     )
-                ], alignment=ft.MainAxisAlignment.CENTER),
-                # ft.Row([
-                #     ft.Container(
-                #         margin = 8,
-                #         width = 320,
-                #         content = ft.OutlinedButton(
-                #             content=ft.Container(
-                #                 padding = 16,
-                #                 content = ft.Text("midi mapping", size = 20)
-                #             ),
-                #             data="midi_mapping", on_click=to_midi
-                #         )
-                #     )
-                # ], alignment=ft.MainAxisAlignment.CENTER)
+                ], alignment=ft.MainAxisAlignment.CENTER)
             ]))
         ]
     )
