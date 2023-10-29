@@ -67,7 +67,10 @@ def edit_key_mapping_view(page_go):
         if string == "" or string in key_map_obj.keys():
             annotation.value = "キーが入力されていないか、すでに存在するキーです"
         else:
-            key_map_obj[string] = {}
+            key_map_obj[string] = {
+                "primary": "",
+                "note": []
+            }
 
             key_map_row = create_row(string)
             key_map_dataTable.rows.append(key_map_row)

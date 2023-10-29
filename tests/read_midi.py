@@ -3,7 +3,7 @@ import mido
 import yaml
 
 root = str(pathlib.Path('__file__').resolve().parent)
-file_paths = ['test_drum_ezd']
+file_paths = ['test2']
 # file_paths = ['test_drum_ezd', 'test_drum_flat', 'test_drum_gp7']
 
 def save_yaml(yaml_obj, file_path):
@@ -23,4 +23,4 @@ for file_path in file_paths:
                 new_track.append(msg)
         new_mid.tracks.append(new_track)
     new_mid.save(root + '/tests/midi/' + file_path + '_conv.mid')
-    # save_yaml(mid, root + '/tests/yml/' + file_path + '.yml')
+    save_yaml(mid, root + '/tests/yml/' + file_path + '.yml')
