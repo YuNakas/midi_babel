@@ -1,6 +1,7 @@
 import flet as ft
-from _gv import g
+from module.ui.components import app_bar
 from module.util import midi_util
+from _gv import g
 
 def select_midi_track_view(page_go):
     midi_filepath = g.MY_CONF.root_path + "/midi_ready/" + g.MY_STATE.midi_file
@@ -25,7 +26,10 @@ def select_midi_track_view(page_go):
                     content = ft.Container(
                         alignment = ft.alignment.Alignment(0, 0),
                         content = ft.OutlinedButton(
-                            text="メロディトラックとして選択",
+                            content=ft.Text(
+                                value="メロディトラックとして選択",
+                                size=12
+                            ),
                             data=string,
                             on_click=lambda e: click_button(e, "melody")
                         )
@@ -35,7 +39,10 @@ def select_midi_track_view(page_go):
                     content = ft.Container(
                         alignment = ft.alignment.Alignment(0, 0),
                         content = ft.OutlinedButton(
-                            text="リズムトラックとして選択",
+                            content=ft.Text(
+                                value="リズムトラックとして選択",
+                                size=12
+                            ),
                             data=string,
                             on_click=lambda e: click_button(e, "rhythm")
                         )
@@ -91,7 +98,7 @@ def select_midi_track_view(page_go):
     return ft.View(
         "/select_midi_track",
         [
-            ft.AppBar(title=ft.Text("変換したいmidiトラックを選んでください")),
+            app_bar.app_bar("変換したいmidiトラックを選んでください"),
             lv
         ]
     )

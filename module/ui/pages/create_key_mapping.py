@@ -1,4 +1,5 @@
 import flet as ft
+from module.ui.components import app_bar
 from _gv import g
 
 def create_key_mapping_view(page_go):
@@ -39,7 +40,7 @@ def create_key_mapping_view(page_go):
     return ft.View(
         "/create_key_mapping",
         [
-            ft.AppBar(title=ft.Text("キーマップファイル名を入力してください")),
+            app_bar.app_bar("キーマップファイル名を入力してください"),
             textField_row
         ]
     )

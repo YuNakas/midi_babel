@@ -1,6 +1,6 @@
 import flet as ft
+from module.ui.components import app_bar, data_table
 from _gv import g
-from module.ui.components import data_table
 
 def midi_view(page_go):
     def on_click(data):
@@ -10,7 +10,7 @@ def midi_view(page_go):
     return ft.View(
         "/midi",
         [
-            ft.AppBar(title=ft.Text("変換したいmidiファイルを選んでください")),
+            app_bar.app_bar("変換したいmidiファイルを選んでください"),
             data_table.create_data_table(g.MY_CONF.convert_midi_files, on_click)
         ]
     )

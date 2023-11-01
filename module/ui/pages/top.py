@@ -1,10 +1,11 @@
 import flet as ft
+from module.ui.components import app_bar
 
 def top_view(page_go) :
     return ft.View(
         "/",
         [
-            ft.AppBar(title=ft.Text('変換方式を選んでください'), bgcolor=ft.colors.SURFACE_VARIANT),
+            app_bar.app_bar('変換方式を選んでください'),
             ft.Container(ft.Column([
                 ft.Row([
                     ft.Container(

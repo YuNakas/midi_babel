@@ -1,4 +1,5 @@
 import flet as ft
+from module.ui.components import app_bar
 from module.util import yaml_util
 from _gv import g
 
@@ -182,7 +183,7 @@ def edit_key_mapping_view(page_go):
     return ft.View(
         "/edit_key_mapping",
         [
-            ft.AppBar(title=ft.Text("キーマップを編集してください")),
+            app_bar.app_bar("キーマップを編集してください"),
             determined_button,
             new_key_text_field,
             key_map_lv
