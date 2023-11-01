@@ -1,8 +1,8 @@
 import re
 import flet as ft
-from module.util import yaml_util
+from module.ui.components import app_bar
+from module.util import yaml_util, create_midi_map
 from _gv import g
-from module.util import create_midi_map
 
 def load_key_mapping(file_path):
     return yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/" + file_path)
@@ -97,7 +97,7 @@ def generate_converter_view(page_go):
     return ft.View(
         "/generate_converter",
         [
-            ft.AppBar(title=ft.Text("変換表を生成します")),
+            app_bar.app_bar("変換表を生成します"),
             ft.Container(
                 padding = 8,
                 content = ft.Container(

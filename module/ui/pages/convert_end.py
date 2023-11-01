@@ -1,7 +1,8 @@
 import re
 import flet as ft
-from _gv import g
 from module.util import midi_converter
+from module.ui.components import app_bar
+from _gv import g
 
 def convert_end_view(return_top):
     midi_filepath = g.MY_CONF.root_path + '/midi_ready/' + g.MY_STATE.midi_file
@@ -14,7 +15,7 @@ def convert_end_view(return_top):
     return ft.View(
         "/convert_end",
         [
-            ft.AppBar(title=ft.Text("変換が完了しました"), bgcolor=ft.colors.SURFACE_VARIANT),
+            app_bar.app_bar("変換が完了しました"),
             ft.Row(
                 [
                     ft.ElevatedButton(
