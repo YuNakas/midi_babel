@@ -27,6 +27,7 @@ def edit_key_mapping_view(page_go):
                         content = ft.TextField(
                             content_padding=ft.padding.symmetric(0, 8),
                             data=keyStr,
+                            text_size=13,
                             value=str(key_map_obj[keyStr]["primary"]),
                             on_change=lambda e: on_change_primary(e),
                         ),
@@ -40,6 +41,7 @@ def edit_key_mapping_view(page_go):
                         content = ft.TextField(
                             content_padding=ft.padding.symmetric(0, 8),
                             data=keyStr,
+                            text_size=13,
                             value=", ".join(map(str, key_map_obj[keyStr]["note"])),
                             hint_text="カンマ区切りで入力(e.g. 3,5,8)",
                             on_change=lambda e: on_change_note(e)
@@ -155,13 +157,13 @@ def edit_key_mapping_view(page_go):
             ),
             ft.DataColumn(
                 label = ft.Container(
-                    width=60,
+                    width=80,
                     content=ft.Text("優先ノート")
                 )
             ),
             ft.DataColumn(
                 label = ft.Container(
-                    width=290,
+                    width=270,
                     content=ft.Text("ノート一覧")
                 )
             ),
