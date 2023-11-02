@@ -1,7 +1,7 @@
 import flet as ft
 from module.ui.components import app_bar
 from module.util import midi_util
-from _gv import g
+from gv import g
 
 def select_midi_track_view(page_go):
     midi_filepath = g.MY_CONF.root_path + "/midi_ready/" + g.MY_STATE.midi_file

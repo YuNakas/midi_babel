@@ -2,7 +2,7 @@ import re
 import flet as ft
 from module.ui.components import app_bar
 from module.util import yaml_util, create_midi_map
-from _gv import g
+from gv import g
 
 def load_key_mapping(file_path):
     return yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/" + file_path)

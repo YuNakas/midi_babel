@@ -1,6 +1,6 @@
 import flet as ft
 from module.ui.components import app_bar, data_table
-from _gv import g
+from gv import g
 
 def map_view(page_go):
     return ft.View(

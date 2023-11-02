@@ -1,6 +1,6 @@
 import flet as ft
 from module.ui.components import app_bar
-from _gv import g
+from gv import g
 
 def create_key_mapping_view(page_go):
     def go_edit_key_mapping_view(string):
