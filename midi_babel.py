@@ -1,7 +1,5 @@
 import flet as ft
-from module import _init
 from module.ui import create_view
-from _gv import g
 
 def main(page: ft.Page):
     page.title = "MIDI Babel"
@@ -14,9 +12,4 @@ def main(page: ft.Page):
     create_view.create_view(page)
 
 if __name__ == '__main__':
-    # 初期化処理
-    _init.init_config()
-    _init.init_state()
-    _init.init_midi()
-    
     ft.app(target=main, assets_dir="assets")

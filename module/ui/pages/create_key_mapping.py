@@ -4,9 +4,9 @@ from gv import g
 
 def create_key_mapping_view(page_go):
     def go_edit_key_mapping_view(string):
-        if g.MY_STATE.from_or_to == "from":
+        if g.MY_STATE.get_from_or_to() == "from":
             g.MY_STATE.set_key_mapping_from_file(string + ".yml")
-        if g.MY_STATE.from_or_to == "to":
+        if g.MY_STATE.get_from_or_to() == "to":
             g.MY_STATE.set_key_mapping_to_file(string + ".yml")
         g.MY_STATE.set_key_mapping_edit_file(string + ".yml")
         page_go("/edit_key_mapping")
@@ -19,7 +19,7 @@ def create_key_mapping_view(page_go):
         text_field_text = e.control.value
     
     def on_click_determined(text_field_text):
-        if (text_field_text + ".yml") in g.MY_CONF.key_mapping_files or text_field_text == "":
+        if (text_field_text + ".yml") in g.MY_CONF.get_key_mapping_files() or text_field_text == "":
             nonlocal annotation
             annotation.value = "すでに存在するファイル名か、ファイル名が入力されていません"
             textField_row.update()

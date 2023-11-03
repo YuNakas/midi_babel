@@ -6,13 +6,13 @@ from gv import g
 def edit_key_mapping_view(page_go):
     new_key_name: str = ""
     key_mapping_edit_file: str = ""
-    if g.MY_STATE.from_or_to == 'from':
-        key_mapping_edit_file = g.MY_STATE.key_mapping_from_file
-    if g.MY_STATE.from_or_to == 'to':
-        key_mapping_edit_file = g.MY_STATE.key_mapping_to_file
+    if g.MY_STATE.get_from_or_to() == 'from':
+        key_mapping_edit_file = g.MY_STATE.get_key_mapping_from_file()
+    if g.MY_STATE.get_from_or_to() == 'to':
+        key_mapping_edit_file = g.MY_STATE.get_key_mapping_to_file()
 
-    if key_mapping_edit_file in g.MY_CONF.key_mapping_files:
-        key_map_obj = yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/" + key_mapping_edit_file)
+    if key_mapping_edit_file in g.MY_CONF.get_key_mapping_files():
+        key_map_obj = yaml_util.load_yaml(g.MY_CONF.get_root_path() + "/key_mapping/" + key_mapping_edit_file)
     else:
         key_map_obj = {}
     annotation: ft.Text = ft.Text(color=ft.colors.RED)
@@ -101,13 +101,13 @@ def edit_key_mapping_view(page_go):
 
     def next():
         save_setting()
-        if g.MY_STATE.from_or_to == "from":
+        if g.MY_STATE.get_from_or_to() == "from":
             page_go("/key_mapping_to")
-        if g.MY_STATE.from_or_to == "to":
+        if g.MY_STATE.get_from_or_to() == "to":
             page_go("/generate_converter")
     def save_setting():
         nonlocal key_map_obj
-        yaml_util.save_yaml(key_map_obj, g.MY_CONF.root_path + "/key_mapping/" + key_mapping_edit_file)
+        yaml_util.save_yaml(key_map_obj, g.MY_CONF.get_root_path() + "/key_mapping/" + key_mapping_edit_file)
     determined_button = ft.Container(ft.Column([
         ft.Row(
             controls=[
