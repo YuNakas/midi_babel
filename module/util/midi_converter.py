@@ -1,12 +1,12 @@
 import mido
 from gv import g
 
-def midi_converter(midi_filepath: str, converted_midi_filepath: str): 
+def midi_converter(converted_midi_filepath: str): 
     converter = g.MY_STATE.get_midi_map_obj()
 
     new_mid = mido.MidiFile()
     try:
-        new_mid.tracks.append(g.MY_MIDI.setting_track)
+        new_mid.tracks.append(g.MY_MIDI.get_setting_track())
     except:
         pass
     new_track = mido.MidiTrack()
