@@ -7,7 +7,7 @@ build_exe_options = {
         "flet", "mido", "yaml"
     ],
     "include_files": [
-        "assets/midi_ready/", "assets/midi_converted/", "assets/key_mapping/"
+        "assets/"
     ]
 }
 
