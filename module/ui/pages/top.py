@@ -5,7 +5,7 @@ def top_view(page_go) :
     return ft.View(
         "/",
         [
-            app_bar.app_bar('変換方式を選んでください'),
+            app_bar.app_bar('メインメニュー'),
             ft.Container(ft.Column([
                 ft.Row([
                     ft.Container(

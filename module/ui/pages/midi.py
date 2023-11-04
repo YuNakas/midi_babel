@@ -107,10 +107,16 @@ def midi_view(page, page_go, return_top):
         "/midi",
         [
             app_bar.app_bar("変換したいmidiファイルを選んでください"),
-            ft.OutlinedButton(text="ファイルの取り込み", on_click=lambda e: pick_file_dialog.pick_files(
-                allowed_extensions=["mid"],
-                allow_multiple=False
-            )),
+            ft.Container(
+                padding=0,
+                content=ft.OutlinedButton(
+                    text="ファイルの取り込み",
+                    on_click=lambda e: pick_file_dialog.pick_files(
+                        allowed_extensions=["mid"],
+                        allow_multiple=False
+                    )
+                )
+            ),
             data_table.create_data_table(g.MY_CONF.get_convert_midi_files(), on_click)
         ]
     )

@@ -63,7 +63,7 @@ def select_midi_track_view(page_go):
                     margin = 0,
                     alignment = ft.alignment.Alignment(-0.8, 0),
                     content = ft.Text(
-                        value = "ファイル名",
+                        value = "トラック名",
                         size = 18
                     )
                 ),
