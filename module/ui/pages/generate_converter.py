@@ -5,7 +5,7 @@ from module.util import yaml_util, create_midi_map
 from gv import g
 
 def load_key_mapping(file_path):
-    return yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/" + file_path)
+    return yaml_util.load_yaml(g.MY_CONF.get_root_path() + "/key_mapping/" + file_path)
 
 def generate_converter_view(page_go):
     key_map_from_obj = load_key_mapping(g.MY_STATE.get_key_mapping_from_file())
