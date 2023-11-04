@@ -38,7 +38,7 @@ def create_view(page):
             )
         if page.route == "/convert_end":
             page.views.append(
-                convert_end.convert_end_view(return_top)
+                convert_end.convert_end_view(page, return_top)
             )
         if page.route == "/file_output":
             page.views.append(
