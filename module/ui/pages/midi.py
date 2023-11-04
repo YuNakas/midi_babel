@@ -46,7 +46,7 @@ def midi_view(page, page_go, return_top):
         try:
             shutil.copy(
                 src=e.files[0].path,
-                dst=g.MY_CONF.get_root_path() + "/midi_ready/" + os.path.basename(e.files[0].path)
+                dst=g.MY_CONF.get_root_path() + "/assets/midi_ready/" + os.path.basename(e.files[0].path)
             )
             open_scs_dlg()
 
