@@ -14,9 +14,24 @@ def top_view(page_go) :
                         content = ft.OutlinedButton(
                             content=ft.Container(
                                 padding = 16,
-                                content = ft.Text("key mapping", size = 20)
+                                content = ft.Text("MIDI変換", size = 20)
                             ),
-                            data="key_mapping", on_click=lambda e: page_go("/midi")
+                            on_click=lambda e: page_go("/midi")
+                        )
+                    )
+                ], alignment=ft.MainAxisAlignment.CENTER)
+            ])),
+            ft.Container(ft.Column([
+                ft.Row([
+                    ft.Container(
+                        margin = 8,
+                        width = 320,
+                        content = ft.OutlinedButton(
+                            content=ft.Container(
+                                padding = 16,
+                                content = ft.Text("ファイルエクスポート", size = 20)
+                            ),
+                            on_click=lambda e: page_go("/file_output")
                         )
                     )
                 ], alignment=ft.MainAxisAlignment.CENTER)

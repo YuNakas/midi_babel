@@ -1,4 +1,5 @@
-from module.ui.pages import top, midi, select_midi_track, key_mapping_from, key_mapping_to, create_key_mapping, edit_key_mapping, generate_converter, convert_end
+from module.ui.pages import top, midi, select_midi_track, key_mapping_from, key_mapping_to,\
+    create_key_mapping, edit_key_mapping, generate_converter, convert_end, file_output, midi_file_output
 from gv import g
 
 def create_view(page):
@@ -38,6 +39,14 @@ def create_view(page):
         if page.route == "/convert_end":
             page.views.append(
                 convert_end.convert_end_view(return_top)
+            )
+        if page.route == "/file_output":
+            page.views.append(
+                file_output.file_output_view(page, page.go, return_top)
+            )
+        if page.route == "/midi_file_output":
+            page.views.append(
+                midi_file_output.midi_file_output_view(page, return_top)
             )
         page.update()
     
