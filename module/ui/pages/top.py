@@ -29,7 +29,7 @@ def top_view(page_go) :
                         content = ft.OutlinedButton(
                             content=ft.Container(
                                 padding = 16,
-                                content = ft.Text("ファイルエクスポート", size = 20)
+                                content = ft.Text("ファイルの保存・取込", size = 20)
                             ),
                             on_click=lambda e: page_go("/file_output")
                         )
