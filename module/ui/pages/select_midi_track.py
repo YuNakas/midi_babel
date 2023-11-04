@@ -1,9 +1,10 @@
 import flet as ft
-from _gv import g
+from module.ui.components import app_bar
 from module.util import midi_util
+from gv import g
 
 def select_midi_track_view(page_go):
-    midi_filepath = g.MY_CONF.root_path + "/midi_ready/" + g.MY_STATE.midi_file
+    midi_filepath = g.MY_CONF.get_root_path() + "/assets/midi_ready/" + g.MY_STATE.get_midi_file()
     midi_obj = midi_util.read_midi_obj(midi_filepath)
 
     def click_button(e, button_type: str):
@@ -25,7 +26,10 @@ def select_midi_track_view(page_go):
                     content = ft.Container(
                         alignment = ft.alignment.Alignment(0, 0),
                         content = ft.OutlinedButton(
-                            text="メロディトラックとして選択",
+                            content=ft.Text(
+                                value="メロディトラックとして選択",
+                                size=12
+                            ),
                             data=string,
                             on_click=lambda e: click_button(e, "melody")
                         )
@@ -35,7 +39,10 @@ def select_midi_track_view(page_go):
                     content = ft.Container(
                         alignment = ft.alignment.Alignment(0, 0),
                         content = ft.OutlinedButton(
-                            text="リズムトラックとして選択",
+                            content=ft.Text(
+                                value="リズムトラックとして選択",
+                                size=12
+                            ),
                             data=string,
                             on_click=lambda e: click_button(e, "rhythm")
                         )
@@ -56,7 +63,7 @@ def select_midi_track_view(page_go):
                     margin = 0,
                     alignment = ft.alignment.Alignment(-0.8, 0),
                     content = ft.Text(
-                        value = "ファイル名",
+                        value = "トラック名",
                         size = 18
                     )
                 ),
@@ -81,7 +88,7 @@ def select_midi_track_view(page_go):
             )
         ]
     )
-    for track_name in g.MY_STATE.midi_track_names:
+    for track_name in g.MY_STATE.get_midi_track_names():
         table.rows.append(create_row(track_name))
 
     # スクロール可能にする
@@ -91,7 +98,7 @@ def select_midi_track_view(page_go):
     return ft.View(
         "/select_midi_track",
         [
-            ft.AppBar(title=ft.Text("変換したいmidiトラックを選んでください")),
+            app_bar.app_bar("変換したいmidiトラックを選んでください"),
             lv
         ]
     )

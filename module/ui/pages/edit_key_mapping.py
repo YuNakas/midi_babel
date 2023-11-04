@@ -1,17 +1,18 @@
 import flet as ft
+from module.ui.components import app_bar
 from module.util import yaml_util
-from _gv import g
+from gv import g
 
 def edit_key_mapping_view(page_go):
     new_key_name: str = ""
     key_mapping_edit_file: str = ""
-    if g.MY_STATE.from_or_to == 'from':
-        key_mapping_edit_file = g.MY_STATE.key_mapping_from_file
-    if g.MY_STATE.from_or_to == 'to':
-        key_mapping_edit_file = g.MY_STATE.key_mapping_to_file
+    if g.MY_STATE.get_from_or_to() == 'from':
+        key_mapping_edit_file = g.MY_STATE.get_key_mapping_from_file()
+    if g.MY_STATE.get_from_or_to() == 'to':
+        key_mapping_edit_file = g.MY_STATE.get_key_mapping_to_file()
 
-    if key_mapping_edit_file in g.MY_CONF.key_mapping_files:
-        key_map_obj = yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/" + key_mapping_edit_file)
+    if key_mapping_edit_file in g.MY_CONF.get_key_mapping_files():
+        key_map_obj = yaml_util.load_yaml(g.MY_CONF.get_root_path() + "/assets/key_mapping/" + key_mapping_edit_file)
     else:
         key_map_obj = {}
     annotation: ft.Text = ft.Text(color=ft.colors.RED)
@@ -26,6 +27,7 @@ def edit_key_mapping_view(page_go):
                         content = ft.TextField(
                             content_padding=ft.padding.symmetric(0, 8),
                             data=keyStr,
+                            text_size=13,
                             value=str(key_map_obj[keyStr]["primary"]),
                             on_change=lambda e: on_change_primary(e),
                         ),
@@ -39,6 +41,7 @@ def edit_key_mapping_view(page_go):
                         content = ft.TextField(
                             content_padding=ft.padding.symmetric(0, 8),
                             data=keyStr,
+                            text_size=13,
                             value=", ".join(map(str, key_map_obj[keyStr]["note"])),
                             hint_text="カンマ区切りで入力(e.g. 3,5,8)",
                             on_change=lambda e: on_change_note(e)
@@ -98,13 +101,13 @@ def edit_key_mapping_view(page_go):
 
     def next():
         save_setting()
-        if g.MY_STATE.from_or_to == "from":
+        if g.MY_STATE.get_from_or_to() == "from":
             page_go("/key_mapping_to")
-        if g.MY_STATE.from_or_to == "to":
+        if g.MY_STATE.get_from_or_to() == "to":
             page_go("/generate_converter")
     def save_setting():
         nonlocal key_map_obj
-        yaml_util.save_yaml(key_map_obj, g.MY_CONF.root_path + "/key_mapping/" + key_mapping_edit_file)
+        yaml_util.save_yaml(key_map_obj, g.MY_CONF.get_root_path() + "/assets/key_mapping/" + key_mapping_edit_file)
     determined_button = ft.Container(ft.Column([
         ft.Row(
             controls=[
@@ -154,13 +157,13 @@ def edit_key_mapping_view(page_go):
             ),
             ft.DataColumn(
                 label = ft.Container(
-                    width=60,
+                    width=80,
                     content=ft.Text("優先ノート")
                 )
             ),
             ft.DataColumn(
                 label = ft.Container(
-                    width=290,
+                    width=270,
                     content=ft.Text("ノート一覧")
                 )
             ),
@@ -182,7 +185,7 @@ def edit_key_mapping_view(page_go):
     return ft.View(
         "/edit_key_mapping",
         [
-            ft.AppBar(title=ft.Text("キーマップを編集してください")),
+            app_bar.app_bar("キーマップを編集してください"),
             determined_button,
             new_key_text_field,
             key_map_lv

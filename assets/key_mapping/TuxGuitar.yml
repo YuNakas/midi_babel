@@ -1,0 +1,76 @@
+acousticBassDrum_hit:
+  note:
+  - '35'
+  primary: '35'
+bassDrum1_hit:
+  note:
+  - '36'
+  primary: '36'
+china:
+  note:
+  - '52'
+  primary: '52'
+crash1:
+  note:
+  - '49'
+  primary: '49'
+crash2:
+  note:
+  - '57'
+  primary: '57'
+highFloorTom_hit:
+  note:
+  - '43'
+  primary: '43'
+highTom_hit:
+  note:
+  - '50'
+  primary: '50'
+highmidTom_hit:
+  note:
+  - '48'
+  primary: '48'
+hihat_closed:
+  note:
+  - '42'
+  primary: '42'
+hihat_open:
+  note:
+  - '46'
+  primary: '46'
+hihat_pedal:
+  note:
+  - '44'
+  primary: '44'
+lowFloorTom_hit:
+  note:
+  - '41'
+  primary: '41'
+lowTom_hit:
+  note:
+  - '45'
+  primary: '45'
+lowmidTom_hit:
+  note:
+  - '47'
+  primary: '47'
+ride:
+  note:
+  - '51'
+  primary: '51'
+ride_bell:
+  note:
+  - '53'
+  primary: '53'
+snare_hit:
+  note:
+  - '38'
+  primary: '38'
+snare_sideStick:
+  note:
+  - '37'
+  primary: '37'
+splash:
+  note:
+  - '55'
+  primary: '55'

@@ -1,23 +1,23 @@
 import re
 import flet as ft
-from module.util import yaml_util
-from _gv import g
-from module.util import create_midi_map
+from module.ui.components import app_bar
+from module.util import yaml_util, create_midi_map
+from gv import g
 
 def load_key_mapping(file_path):
-    return yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/" + file_path)
+    return yaml_util.load_yaml(g.MY_CONF.get_root_path() + "/assets/key_mapping/" + file_path)
 
 def generate_converter_view(page_go):
-    key_map_from_obj = load_key_mapping(g.MY_STATE.key_mapping_from_file)
-    key_map_to_obj = load_key_mapping(g.MY_STATE.key_mapping_to_file)
-    g.MY_STATE.set_map_cache_fileName(re.sub(r"\..*$", "", g.MY_STATE.key_mapping_from_file) + "_" + re.sub(r"\..*$", "", g.MY_STATE.key_mapping_to_file) + ".yml")
+    key_map_from_obj = load_key_mapping(g.MY_STATE.get_key_mapping_from_file())
+    key_map_to_obj = load_key_mapping(g.MY_STATE.get_key_mapping_to_file())
+    g.MY_STATE.set_map_cache_fileName(re.sub(r"\..*$", "", g.MY_STATE.get_key_mapping_from_file()) + "_" + re.sub(r"\..*$", "", g.MY_STATE.get_key_mapping_to_file()) + ".yml")
 
     def load_map_cache():
-        map_cache_fileName = g.MY_STATE.map_cache_fileName
+        map_cache_fileName = g.MY_STATE.get_map_cache_fileName()
 
         map_obj = {}
-        if map_cache_fileName in g.MY_CONF.map_cache_files:
-            map_obj = (yaml_util.load_yaml(g.MY_CONF.root_path + "/key_mapping/_map_caches/" + map_cache_fileName))
+        if map_cache_fileName in g.MY_CONF.get_map_cache_files():
+            map_obj = (yaml_util.load_yaml(g.MY_CONF.get_root_path() + "/assets/key_mapping/_map_caches/" + map_cache_fileName))
 
         return map_obj
     gen_map_obj = load_map_cache()
@@ -91,13 +91,13 @@ def generate_converter_view(page_go):
 
     def next(e):
         create_midi_map.create_midi_map(gen_map_obj, key_map_from_obj, key_map_to_obj)
-        yaml_util.save_yaml(gen_map_obj, g.MY_CONF.root_path + "/key_mapping/_map_caches/" + g.MY_STATE.map_cache_fileName)
+        yaml_util.save_yaml(gen_map_obj, g.MY_CONF.get_root_path() + "/assets/key_mapping/_map_caches/" + g.MY_STATE.get_map_cache_fileName())
         page_go("/convert_end")
 
     return ft.View(
         "/generate_converter",
         [
-            ft.AppBar(title=ft.Text("変換表を生成します")),
+            app_bar.app_bar("変換表を生成します"),
             ft.Container(
                 padding = 8,
                 content = ft.Container(

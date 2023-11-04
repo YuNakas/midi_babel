@@ -1,0 +1,204 @@
+crash1_bow:
+  note:
+  - '84'
+  - '87'
+  primary: '84'
+crash1_crash:
+  note:
+  - '86'
+  primary: '86'
+crash1_mutedHit:
+  note:
+  - '83'
+  primary: '83'
+crash4_bow:
+  note:
+  - '96'
+  primary: '96'
+crash4_crash:
+  note:
+  - '98'
+  primary: '98'
+crash4_mutedHit:
+  note:
+  - '99'
+  - '95'
+  primary: '99'
+floorTom1_center:
+  note:
+  - '43'
+  primary: '43'
+floorTom1_rimshot:
+  note:
+  - '75'
+  primary: '75'
+hihat_closedEdge:
+  note:
+  - '65'
+  - '22'
+  - '122'
+  primary: '65'
+hihat_closedTip:
+  note:
+  - '61'
+  - '11'
+  - '42'
+  - '119'
+  primary: '61'
+hihat_openEdge0:
+  note:
+  - '64'
+  - '120'
+  primary: '64'
+hihat_openEdge1:
+  note:
+  - '24'
+  primary: '24'
+hihat_openEdge2:
+  note:
+  - '46'
+  - '25'
+  - '123'
+  primary: '46'
+hihat_openEdge3:
+  note:
+  - '25'
+  primary: '25'
+hihat_openEdge4:
+  note:
+  - '60'
+  - '121'
+  primary: '60'
+hihat_openEdge5:
+  note:
+  - '124'
+  primary: '124'
+hihat_openTip0:
+  note:
+  - '12'
+  primary: '12'
+hihat_openTip1:
+  note:
+  - '13'
+  primary: '13'
+hihat_openTip2:
+  note:
+  - '14'
+  primary: '14'
+hihat_openTip3:
+  note:
+  - '15'
+  primary: '15'
+hihat_openTip4:
+  note:
+  - '16'
+  primary: '16'
+hihat_openTip5:
+  note:
+  - '17'
+  primary: '17'
+hihat_pedalclose:
+  note:
+  - '44'
+  - '10'
+  - '21'
+  primary: '44'
+hihat_tightEdge:
+  note:
+  - '62'
+  primary: '62'
+hihat_tightTip:
+  note:
+  - '63'
+  primary: '63'
+kick_hit:
+  note:
+  - 34
+  - 35
+  - 36
+  primary: 36
+rackTom1_center:
+  note:
+  - '48'
+  primary: '48'
+rackTom1_rimonly:
+  note:
+  - '81'
+  primary: '81'
+rackTom1_rimshot:
+  note:
+  - '82'
+  primary: '82'
+rackTom2_center:
+  note:
+  - '47'
+  primary: '47'
+rackTom2_rimshot:
+  note:
+  - '80'
+  primary: '80'
+ride_bell:
+  note:
+  - '53'
+  - '30'
+  - '85'
+  - '88'
+  - '90'
+  - '92'
+  - '93'
+  - '97'
+  - '100'
+  - '102'
+  - '104'
+  - '105'
+  - '109'
+  - '112'
+  - '114'
+  - '117'
+  primary: '53'
+ride_bowTip:
+  note:
+  - '51'
+  - '29'
+  - '104'
+  - '116'
+  primary: '51'
+ride_edge:
+  note:
+  - '59'
+  - '115'
+  primary: '59'
+ride_mutedHit:
+  note:
+  - '118'
+  primary: '118'
+snare_center:
+  note:
+  - '38'
+  - '39'
+  - '66'
+  - '68'
+  - '69'
+  - '70'
+  - '125'
+  primary: 38
+snare_edge:
+  note:
+  - '33'
+  primary: '33'
+snare_rimonly:
+  note:
+  - '71'
+  - '76'
+  primary: '71'
+snare_rimshot:
+  note:
+  - '40'
+  - '126'
+  primary: '40'
+snare_sidestick:
+  note:
+  - '37'
+  - '67'
+  - '127'
+  primary: '37'
