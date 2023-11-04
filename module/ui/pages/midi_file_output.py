@@ -93,7 +93,7 @@ def midi_file_output_view(page, return_top):
         
         try:
             shutil.copy(
-                src=g.MY_CONF.get_root_path() + "/midi_converted/" + clicked_filename,
+                src=g.MY_CONF.get_root_path() + "/assets/midi_converted/" + clicked_filename,
                 dst=e.path
             )
             open_scs_dlg()

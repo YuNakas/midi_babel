@@ -1,6 +1,6 @@
 .vscode
 assets/midi_ready/*.mid
-midi_converted/*.mid
+assets/midi_converted/*.mid
 assets/temp/*
 !assets/temp/.gitkeep
 
