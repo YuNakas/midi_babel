@@ -5,7 +5,7 @@ from module.util import yaml_util, create_midi_map
 from gv import g
 
 def load_key_mapping(file_path):
-    return yaml_util.load_yaml(g.MY_CONF.get_root_path() + "/key_mapping/" + file_path)
+    return yaml_util.load_yaml(g.MY_CONF.get_root_path() + "/assets/key_mapping/" + file_path)
 
 def generate_converter_view(page_go):
     key_map_from_obj = load_key_mapping(g.MY_STATE.get_key_mapping_from_file())
@@ -17,7 +17,7 @@ def generate_converter_view(page_go):
 
         map_obj = {}
         if map_cache_fileName in g.MY_CONF.get_map_cache_files():
-            map_obj = (yaml_util.load_yaml(g.MY_CONF.get_root_path() + "/key_mapping/_map_caches/" + map_cache_fileName))
+            map_obj = (yaml_util.load_yaml(g.MY_CONF.get_root_path() + "/assets/key_mapping/_map_caches/" + map_cache_fileName))
 
         return map_obj
     gen_map_obj = load_map_cache()
@@ -91,7 +91,7 @@ def generate_converter_view(page_go):
 
     def next(e):
         create_midi_map.create_midi_map(gen_map_obj, key_map_from_obj, key_map_to_obj)
-        yaml_util.save_yaml(gen_map_obj, g.MY_CONF.get_root_path() + "/key_mapping/_map_caches/" + g.MY_STATE.get_map_cache_fileName())
+        yaml_util.save_yaml(gen_map_obj, g.MY_CONF.get_root_path() + "/assets/key_mapping/_map_caches/" + g.MY_STATE.get_map_cache_fileName())
         page_go("/convert_end")
 
     return ft.View(

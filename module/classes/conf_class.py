@@ -12,10 +12,10 @@ class ConfClass():
     def __init__(self) -> None:
         self.__root_path = str(pathlib.Path('__file__').resolve().parent)
         self.__mapping_files = string_util.get_filename(os.listdir(self.__root_path + '/mapping'), "yml")
-        self.__key_mapping_files = string_util.get_filename(os.listdir(self.__root_path + '/key_mapping'), "yml")
+        self.__key_mapping_files = string_util.get_filename(os.listdir(self.__root_path + '/assets/key_mapping'), "yml")
         self.__convert_midi_files = string_util.get_filename(os.listdir(self.__root_path + '/assets/midi_ready'), "mid")
         self.__converted_midi_files = string_util.get_filename(os.listdir(self.__root_path + '/assets/midi_converted'), "mid")
-        self.__map_cache_files = string_util.get_filename(os.listdir(self.__root_path + "/key_mapping/_map_caches/"), "yml")
+        self.__map_cache_files = string_util.get_filename(os.listdir(self.__root_path + "/assets/key_mapping/_map_caches/"), "yml")
     
     def get_root_path(self):
         return self.__root_path
