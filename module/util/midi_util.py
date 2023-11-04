@@ -1,6 +1,6 @@
 import mido
-from _gv import g
 from module.util import yaml_util
+from gv import g
 
 def read_midi_obj(filepath: str):
     rtn_midi_tracks_obj = {}

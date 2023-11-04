@@ -1,4 +1,4 @@
-from _gv import g
+from gv import g
 
 def create_midi_map(gen_map_obj, key_map_from_obj, key_map_to_obj):
     obj = {}

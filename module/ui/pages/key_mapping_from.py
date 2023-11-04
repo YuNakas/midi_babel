@@ -1,6 +1,6 @@
 import flet as ft
 from module.ui.components import app_bar, data_table
-from _gv import g
+from gv import g
 
 def key_mapping_from_view(page_go):
     def click_new(): 
@@ -21,6 +21,6 @@ def key_mapping_from_view(page_go):
         [
             app_bar.app_bar("変換元のキーマップファイルを選んでください"),
             ft.OutlinedButton(on_click=lambda e: click_new(), text="新規作成"),
-            data_table.create_mappingDataTable(g.MY_CONF.key_mapping_files, click_select, click_edit)
+            data_table.create_mappingDataTable(g.MY_CONF.get_key_mapping_files(), click_select, click_edit)
         ]
     )

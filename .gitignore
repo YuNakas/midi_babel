@@ -1,6 +1,8 @@
 .vscode
-midi_ready/*.mid
-midi_converted/*.mid
+assets/midi_ready/*.mid
+assets/midi_converted/*.mid
+assets/temp/*
+!assets/temp/.gitkeep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

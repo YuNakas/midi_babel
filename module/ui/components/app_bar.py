@@ -6,5 +6,5 @@ def app_bar(title: str):
             value=title,
         ),
         color="#FFFFFF",
-        bgcolor="#002333"
+        bgcolor="#194E66"
     )

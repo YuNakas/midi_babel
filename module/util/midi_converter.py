@@ -1,16 +1,16 @@
 import mido
-from _gv import g
+from gv import g
 
-def midi_converter(midi_filepath: str, converted_midi_filepath: str): 
-    converter = g.MY_STATE.midi_map_obj
+def midi_converter(converted_midi_filepath: str): 
+    converter = g.MY_STATE.get_midi_map_obj()
 
     new_mid = mido.MidiFile()
     try:
-        new_mid.tracks.append(g.MY_MIDI.setting_track)
+        new_mid.tracks.append(g.MY_MIDI.get_setting_track())
     except:
         pass
     new_track = mido.MidiTrack()
-    for msg in g.MY_MIDI.selected_track:
+    for msg in g.MY_MIDI.get_selected_track():
         if type(msg) == mido.messages.messages.Message:
             if str(msg.note) in converter:
                 new_message = msg
@@ -20,7 +20,7 @@ def midi_converter(midi_filepath: str, converted_midi_filepath: str):
                 new_track.append(msg)
         else:
             new_track.append(msg)
-    if g.MY_MIDI.track_type == "rhythm":
+    if g.MY_MIDI.get_track_type() == "rhythm":
         new_track = drums_converter(new_track)
     new_mid.tracks.append(new_track)
     new_mid.save(converted_midi_filepath)

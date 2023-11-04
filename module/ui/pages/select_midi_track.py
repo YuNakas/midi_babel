@@ -1,10 +1,10 @@
 import flet as ft
 from module.ui.components import app_bar
 from module.util import midi_util
-from _gv import g
+from gv import g
 
 def select_midi_track_view(page_go):
-    midi_filepath = g.MY_CONF.root_path + "/midi_ready/" + g.MY_STATE.midi_file
+    midi_filepath = g.MY_CONF.get_root_path() + "/assets/midi_ready/" + g.MY_STATE.get_midi_file()
     midi_obj = midi_util.read_midi_obj(midi_filepath)
 
     def click_button(e, button_type: str):
@@ -63,7 +63,7 @@ def select_midi_track_view(page_go):
                     margin = 0,
                     alignment = ft.alignment.Alignment(-0.8, 0),
                     content = ft.Text(
-                        value = "ファイル名",
+                        value = "トラック名",
                         size = 18
                     )
                 ),
@@ -88,7 +88,7 @@ def select_midi_track_view(page_go):
             )
         ]
     )
-    for track_name in g.MY_STATE.midi_track_names:
+    for track_name in g.MY_STATE.get_midi_track_names():
         table.rows.append(create_row(track_name))
 
     # スクロール可能にする
