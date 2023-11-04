@@ -10,7 +10,7 @@ def create_view(page):
         )
         if page.route == "/midi":
             page.views.append(
-                midi.midi_view(page.go)
+                midi.midi_view(page, page.go, return_top)
             )
         if page.route == "/select_midi_track":
             page.views.append(
