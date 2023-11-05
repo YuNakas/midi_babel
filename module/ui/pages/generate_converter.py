@@ -24,10 +24,19 @@ def generate_converter_view(page_go):
 
     def create_convertTable():
         table = ft.DataTable(
+            heading_row_height=40,
             width = 800,
             columns=[
-                ft.DataColumn(ft.Text("Convert From")),
-                ft.DataColumn(ft.Text("Convert To"))
+                ft.DataColumn(ft.Text(
+                    value="変換元",
+                    size = 18,
+                    height=40
+                )),
+                ft.DataColumn(ft.Text(
+                    value="変換先",
+                    size = 18,
+                    height=40
+                ))
             ],
             rows=create_row()
         )
@@ -99,10 +108,13 @@ def generate_converter_view(page_go):
         [
             app_bar.app_bar("変換表を生成します"),
             ft.Container(
-                padding = 8,
-                content = ft.Container(
-                    padding = 8,
-                    content = ft.OutlinedButton(on_click = next, content=ft.Text("決定", size = 16))
+                padding = 0,
+                content = ft.OutlinedButton(
+                    on_click = next,
+                    content=ft.Text("決定"),
+                    style=ft.ButtonStyle(
+                        shape=ft.RoundedRectangleBorder(radius=8)
+                    )
                 )
             ),
             create_convertTable(),

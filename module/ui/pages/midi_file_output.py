@@ -39,6 +39,7 @@ def midi_file_output_view(page, return_top):
     
     table = ft.DataTable(
         width = 800,
+        heading_row_height=40,
         column_spacing=0,
         columns=[
             ft.DataColumn(
@@ -49,7 +50,8 @@ def midi_file_output_view(page, return_top):
                     alignment = ft.alignment.Alignment(-0.95, 0),
                     content = ft.Text(
                         value = "ファイル名",
-                        size = 18
+                        size = 18,
+                        height=40
                     )
                 )
             )

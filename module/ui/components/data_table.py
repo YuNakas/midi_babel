@@ -24,6 +24,7 @@ def create_data_table(strings, click_callback):
         return rtnRows
     
     table = ft.DataTable(
+        heading_row_height=40,
         width = 800,
         column_spacing=0,
         columns=[
@@ -35,8 +36,8 @@ def create_data_table(strings, click_callback):
                     alignment = ft.alignment.Alignment(-0.95, 0),
                     content = ft.Text(
                         value = "ファイル名",
-                        size = 18
-
+                        size = 18,
+                        height=40
                     )
                 )
             )
@@ -67,6 +68,9 @@ def create_mappingDataTable(strings, click_select_button, click_edit_button):
                             content = ft.OutlinedButton(
                                 text="選択",
                                 data=string,
+                                style=ft.ButtonStyle(
+                                    shape=ft.RoundedRectangleBorder(radius=8)
+                                ),
                                 on_click=lambda e: click_select_button(e.control.data)
                             )
                         )
@@ -77,6 +81,9 @@ def create_mappingDataTable(strings, click_select_button, click_edit_button):
                             content = ft.OutlinedButton(
                                 text="編集",
                                 data=string,
+                                style=ft.ButtonStyle(
+                                    shape=ft.RoundedRectangleBorder(radius=8)
+                                ),
                                 on_click=lambda e: click_edit_button(e.control.data)
                             )
                         )
@@ -86,6 +93,7 @@ def create_mappingDataTable(strings, click_select_button, click_edit_button):
         return rtnRows
     
     table = ft.DataTable(
+        heading_row_height=40,
         width = 800,
         column_spacing = 0,
         horizontal_margin = 0,
@@ -98,8 +106,8 @@ def create_mappingDataTable(strings, click_select_button, click_edit_button):
                     alignment = ft.alignment.Alignment(-0.8, 0),
                     content = ft.Text(
                         value = "ファイル名",
-                        size = 18
-
+                        size = 18,
+                        height = 40
                     )
                 ),
             ),

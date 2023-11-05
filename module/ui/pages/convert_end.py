@@ -69,7 +69,10 @@ def convert_end_view(page, return_top):
                             on_click = lambda e: save_files_dialog.save_file(
                                 file_name=os.path.basename(converted_midi_filepath),
                                 allowed_extensions=["mid"]
-                            )
+                            ),
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=8)
+                            ),
                         )
                     )
                 ],alignment=ft.MainAxisAlignment.CENTER)
@@ -82,8 +85,11 @@ def convert_end_view(page, return_top):
                         content = ft.OutlinedButton(
                             text="Topへ戻る",
                             icon = "CHECK_CIRCLE_OUTLINE",
-                            on_click = return_top
-                        )
+                            on_click = return_top,
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=8)
+                            ),
+                        ),
                     )
                 ],alignment=ft.MainAxisAlignment.CENTER)
             ]))

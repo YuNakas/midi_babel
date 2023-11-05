@@ -26,6 +26,9 @@ def select_midi_track_view(page_go):
                     content = ft.Container(
                         alignment = ft.alignment.Alignment(0, 0),
                         content = ft.OutlinedButton(
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=8)
+                            ),
                             content=ft.Text(
                                 value="メロディトラックとして選択",
                                 size=12
@@ -39,6 +42,9 @@ def select_midi_track_view(page_go):
                     content = ft.Container(
                         alignment = ft.alignment.Alignment(0, 0),
                         content = ft.OutlinedButton(
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=8)
+                            ),
                             content=ft.Text(
                                 value="リズムトラックとして選択",
                                 size=12

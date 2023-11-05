@@ -96,6 +96,9 @@ def file_output_view(page, page_go, return_top):
                                     text_align=ft.TextAlign.CENTER
                                 )
                             ),
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=8)
+                            ),
                             on_click=lambda e: save_files_dialog.save_file(
                                 file_name="midi_babel_settings.zip",
                                 allowed_extensions=["zip"]
@@ -118,6 +121,9 @@ def file_output_view(page, page_go, return_top):
                                     text_align=ft.TextAlign.CENTER
                                 )
                             ),
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=8)
+                            ),
                             on_click=lambda e: pick_files_dialog.pick_files(
                                 allow_multiple=False,
                                 allowed_extensions=["zip"]
@@ -139,6 +145,9 @@ def file_output_view(page, page_go, return_top):
                                     size=20,
                                     text_align=ft.TextAlign.CENTER
                                 )
+                            ),
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=8)
                             ),
                             on_click=lambda e: page_go("/midi_file_output")
                         )

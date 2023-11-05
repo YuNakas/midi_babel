@@ -22,26 +22,44 @@ def create_key_mapping_view(page_go):
         if (text_field_text + ".yml") in g.MY_CONF.get_key_mapping_files() or text_field_text == "":
             nonlocal annotation
             annotation.value = "すでに存在するファイル名か、ファイル名が入力されていません"
-            textField_row.update()
+            annotation.update()
         else:
             go_edit_key_mapping_view(text_field_text)
     
-    textField_row = ft.Row(
-        controls=[
-            ft.TextField(on_change=change_text),
-            ft.OutlinedButton(
-                text="決定",
-                on_click=lambda e: on_click_determined(text_field_text)
-            ),
-            annotation
-        ]
-    )
+    textField_row = ft.Container(ft.Column([
+        ft.Row(
+            controls=[
+                ft.Container(
+                    content = ft.TextField(
+                        content_padding=ft.padding.symmetric(0, 8),
+                        text_size=13,
+                        on_change=change_text
+                    ),
+                    height=32,
+                    padding=0,
+                    margin=0
+                ),
+                ft.OutlinedButton(
+                    text="決定",
+                    style=ft.ButtonStyle(
+                        shape=ft.RoundedRectangleBorder(radius=8)
+                    ),
+                    on_click=lambda e: on_click_determined(text_field_text)
+                )
+            ],
+            alignment=ft.MainAxisAlignment.CENTER
+        )
+    ]))
 
     return ft.View(
         "/create_key_mapping",
         [
             app_bar.app_bar("キーマップファイル名を入力してください"),
-            textField_row
+            textField_row,
+            ft.Container(ft.Column([ft.Row(
+                controls=[annotation],
+                alignment=ft.MainAxisAlignment.CENTER
+            )]))
         ]
     )
 

@@ -110,6 +110,9 @@ def midi_view(page, page_go, return_top):
             ft.Container(
                 padding=0,
                 content=ft.OutlinedButton(
+                    style=ft.ButtonStyle(
+                        shape=ft.RoundedRectangleBorder(radius=8)
+                    ),
                     text="ファイルの取り込み",
                     on_click=lambda e: pick_file_dialog.pick_files(
                         allowed_extensions=["mid"],
