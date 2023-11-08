@@ -2,7 +2,6 @@ import mido
 from gv import g
 
 def midi_converter(converted_midi_filepath: str): 
-    converter = g.MY_STATE.get_midi_map_obj()
 
     new_mid = mido.MidiFile()
     try:
@@ -10,16 +9,34 @@ def midi_converter(converted_midi_filepath: str):
     except:
         pass
     new_track = mido.MidiTrack()
-    for msg in g.MY_MIDI.get_selected_track():
-        if type(msg) == mido.messages.messages.Message:
-            if str(msg.note) in converter:
-                new_message = msg
-                new_message.note = int(converter[str(msg.note)])
-                new_track.append(new_message)
+    if g.MY_STATE.get_convert_mode() == "":
+        converter = g.MY_STATE.get_midi_map_obj()
+        for msg in g.MY_MIDI.get_selected_track():
+            if type(msg) == mido.messages.messages.Message:
+                if str(msg.note) in converter:
+                    new_message = msg
+                    new_message.note = int(converter[str(msg.note)])
+                    new_track.append(new_message)
+                else:
+                    new_track.append(msg)
             else:
                 new_track.append(msg)
-        else:
-            new_track.append(msg)
+    if g.MY_STATE.get_convert_mode() == "tautology":
+        for msg in g.MY_MIDI.get_selected_track():
+            if type(msg) == mido.messages.messages.Message:
+                new_track.append(msg)
+    if g.MY_STATE.get_convert_mode() == "octave_up":
+        for msg in g.MY_MIDI.get_selected_track():
+            if type(msg) == mido.messages.messages.Message:
+                new_message = msg
+                new_message.note = msg.note + 12
+                new_track.append(msg)
+    if g.MY_STATE.get_convert_mode() == "octave_up":
+        for msg in g.MY_MIDI.get_selected_track():
+            if type(msg) == mido.messages.messages.Message:
+                new_message = msg
+                new_message.note = msg.note - 12
+                new_track.append(msg)
     if g.MY_MIDI.get_track_type() == "rhythm":
         new_track = drums_converter(new_track)
     new_mid.tracks.append(new_track)

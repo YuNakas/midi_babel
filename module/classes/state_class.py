@@ -10,7 +10,11 @@ class StateClass():
     __gen_map_obj: object
     __midi_map_obj: object
     __from_or_to: str
+    __convert_mode: str
     
+    def __init__(self):
+        self.__convert_mode = ""
+
     def set_midi_file(self, midi_file: str):
         self.__midi_file = midi_file
     
@@ -43,6 +47,18 @@ class StateClass():
     
     def set_from_or_to(self, from_or_to):
         self.__from_or_to = from_or_to
+
+    def set_convert_mode(self, convert_mode):
+        """
+        以下の変換モード以外は許容しない。\n
+        tautology, octave_up, octave_down
+        """
+        if convert_mode == "tautology"\
+            or convert_mode == "octave_up"\
+            or convert_mode == "octave_down":
+            self.__convert_mode = convert_mode
+        else:
+            print("変換モードが不正です。")
     
     def get_midi_file(self):
         return self.__midi_file
@@ -76,3 +92,6 @@ class StateClass():
     
     def get_from_or_to(self):
         return self.__from_or_to
+    
+    def get_convert_mode(self):
+        return self.__convert_mode
