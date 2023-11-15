@@ -1,6 +1,6 @@
-# midi_babel
+# MIDI BABEL
 ```
 pip install pipenv
-pipenv install
+pipenv sync
 pipenv run start
 ```
