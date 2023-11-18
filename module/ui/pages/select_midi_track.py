@@ -28,7 +28,11 @@ def select_midi_track_view(page_go):
         if "setting_track" in midi_obj.keys():
             g.MY_MIDI.set_setting_track(midi_obj["setting_track"])
         g.MY_MIDI.set_track(midi_obj[e.control.data], button_type)
-        page_go("/key_mapping_from")
+        # オマケ機能から遷移してきた場合は、そのまま変換処理に移行する
+        if g.MY_STATE.get_convert_mode() == "":
+            page_go("/key_mapping_from")
+        else:
+            page_go("/convert_end")
 
     def create_row(string):
         return ft.DataRow(
@@ -43,6 +47,9 @@ def select_midi_track_view(page_go):
                     content = ft.Container(
                         alignment = ft.alignment.Alignment(0, 0),
                         content = ft.OutlinedButton(
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=8)
+                            ),
                             content=ft.Text(
                                 value="メロディトラックとして選択",
                                 size=12
@@ -56,6 +63,9 @@ def select_midi_track_view(page_go):
                     content = ft.Container(
                         alignment = ft.alignment.Alignment(0, 0),
                         content = ft.OutlinedButton(
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=8)
+                            ),
                             content=ft.Text(
                                 value="リズムトラックとして選択",
                                 size=12

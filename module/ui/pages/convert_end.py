@@ -24,11 +24,16 @@ from module.ui.components import app_bar
 from gv import g
 
 def convert_end_view(page, return_top):
-    converted_midi_filepath = g.MY_CONF.get_root_path()\
-        + '/assets/midi_converted/' + re.sub(r"\..*$", "", g.MY_STATE.get_midi_file())\
-        + "_converted_from_" + re.sub(r"\..*$", "", g.MY_STATE.get_key_mapping_from_file())\
-        + "_to_" + re.sub(r"\..*$", "", g.MY_STATE.get_key_mapping_to_file()) + ".mid"
-    midi_converter.midi_converter(converted_midi_filepath)
+    if g.MY_STATE.get_convert_mode() == "":
+        converted_midi_filepath = g.MY_CONF.get_root_path()\
+            + '/assets/midi_converted/' + re.sub(r"\..*$", "", g.MY_STATE.get_midi_file())\
+            + "_converted_from_" + re.sub(r"\..*$", "", g.MY_STATE.get_key_mapping_from_file())\
+            + "_to_" + re.sub(r"\..*$", "", g.MY_STATE.get_key_mapping_to_file()) + ".mid"
+        midi_converter.midi_converter(converted_midi_filepath)
+    else:
+        converted_midi_filepath = g.MY_CONF.get_root_path()\
+            + '/assets/midi_converted/' + re.sub(r"\..*$", "", g.MY_STATE.get_midi_file())\
+            + "_" + g.MY_STATE.get_convert_mode() + ".mid"
 
     def open_scs_dlg(msg):
         dlg = ft.AlertDialog(
@@ -86,7 +91,10 @@ def convert_end_view(page, return_top):
                             on_click = lambda e: save_files_dialog.save_file(
                                 file_name=os.path.basename(converted_midi_filepath),
                                 allowed_extensions=["mid"]
-                            )
+                            ),
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=8)
+                            ),
                         )
                     )
                 ],alignment=ft.MainAxisAlignment.CENTER)
@@ -99,8 +107,11 @@ def convert_end_view(page, return_top):
                         content = ft.OutlinedButton(
                             text="Topへ戻る",
                             icon = "CHECK_CIRCLE_OUTLINE",
-                            on_click = return_top
-                        )
+                            on_click = return_top,
+                            style=ft.ButtonStyle(
+                                shape=ft.RoundedRectangleBorder(radius=8)
+                            ),
+                        ),
                     )
                 ],alignment=ft.MainAxisAlignment.CENTER)
             ]))

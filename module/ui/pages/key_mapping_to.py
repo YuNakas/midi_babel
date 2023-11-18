@@ -37,7 +37,13 @@ def key_mapping_to_view(page_go):
         "/key_mapping_to",
         [
             app_bar.app_bar("変換先のキーマップファイルを選んでください"),
-            ft.OutlinedButton(on_click=lambda e: click_new(), text="新規作成"),
+            ft.OutlinedButton(
+                on_click=lambda e: click_new(),
+                text="新規作成",
+                style=ft.ButtonStyle(
+                    shape=ft.RoundedRectangleBorder(radius=8)
+                ),
+            ),
             data_table.create_mappingDataTable(g.MY_CONF.get_key_mapping_files(), click_select, click_edit)
         ]
     )
