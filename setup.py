@@ -7,7 +7,7 @@ build_exe_options = {
         "flet", "mido", "yaml"
     ],
     "include_files": [
-        "assets/"
+        "assets/", "third_party/", "LICENSE"
     ]
 }
 
