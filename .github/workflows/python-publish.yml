@@ -49,6 +49,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: .\build\exe.linux-x86_64-3.11\MIDI_BABEL__${{env.TAG_NAME}}.zip
-        asset_name: MIDI_BABEL__${{env.TAG_NAME}}.zip
+        asset_path: .\build\exe.linux-x86_64-3.11\MIDI_BABEL_${{env.TAG_NAME}}.zip
+        asset_name: MIDI_BABEL_${{env.TAG_NAME}}.zip
         asset_content_type: application/zip
