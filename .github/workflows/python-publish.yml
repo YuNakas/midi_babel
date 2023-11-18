@@ -25,7 +25,7 @@ jobs:
       run: pipenv run build
     - name: Zip files
       run: |
-        cd .\build\exe.win-amd64-3.11\
+        cd .\build\exe.linux-x86_64-3.11\
         compress-archive -Path .\* -DestinationPath MIDI_BABEL_${{env.TAG_NAME}}.zip
       shell: pwsh
     - name: Create Release
