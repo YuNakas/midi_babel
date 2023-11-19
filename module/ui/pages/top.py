@@ -35,7 +35,19 @@ def top_view(page_go) :
                         )
                     )
                 ], alignment=ft.MainAxisAlignment.CENTER)
-            ]))
+            ])),
+            ft.Container(ft.Column([
+                ft.Row([
+                    ft.Container(
+                        margin = 8,
+                        width = 320,
+                        content = ft.TextButton(
+                            text = "マニュアル(外部リンク)",
+                            url = "mock"
+                        )
+                    )
+                ], alignment=ft.MainAxisAlignment.CENTER)
+            ], alignment=ft.alignment.bottom_center))
         ]
     )
 
