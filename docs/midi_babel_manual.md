@@ -127,133 +127,654 @@ pythonでコーディングしているため、必要であればユーザ側�
 
 ---
 # 音名とノートナンバーの対応表
-|最低音が C-2 の場合|最低音が C-1 の場合|ノートナンバー|
-|:---:|:---:|:---:|
-|C-2|C-1|0|
-|C#-2|C#-1|1|
-|D-2|D-1|2|
-|D#-2|D#-1|3|
-|E-2|E-1|4|
-|F-2|F-1|5|
-|F#-2|F#-1|6|
-|G-2|G-1|7|
-|G#-2|G#-1|8|
-|A-2|A-1|9|
-|A#-2|A#-1|10|
-|B-2|B-1|11|
-|C-1|C0|12|
-|C#-1|C#0|13|
-|D-1|D0|14|
-|D#-1|D#0|15|
-|E-1|E0|16|
-|F-1|F0|17|
-|F#-1|F#0|18|
-|G-1|G0|19|
-|G#-1|G#0|20|
-|A-1|A0|21|
-|A#-1|A#0|22|
-|B-1|B0|23|
-|C0|C1|24|
-|C#0|C#1|25|
-|D0|D1|26|
-|D#0|D#1|27|
-|E0|E1|28|
-|F0|F1|29|
-|F#0|F#1|30|
-|G0|G1|31|
-|G#0|G#1|32|
-|A0|A1|33|
-|A#0|A#1|34|
-|B0|B1|35|
-|C1|C2|36|
-|C#1|C#2|37|
-|D1|D2|38|
-|D#1|D#2|39|
-|E1|E2|40|
-|F1|F2|41|
-|F#1|F#2|42|
-|G1|G2|43|
-|G#1|G#2|44|
-|A1|A2|45|
-|A#1|A#2|46|
-|B1|B2|47|
-|C2|C3|48|
-|C#2|C#3|49|
-|D2|D3|50|
-|D#2|D#3|51|
-|E2|E3|52|
-|F2|F3|53|
-|F#2|F#3|54|
-|G2|G3|55|
-|G#2|G#3|56|
-|A2|A3|57|
-|A#2|A#3|58|
-|B2|B3|59|
-|C3|C4|60|
-|C#3|C#4|61|
-|D3|D4|62|
-|D#3|D#4|63|
-|E3|E4|64|
-|F3|F4|65|
-|F#3|F#4|66|
-|G3|G4|67|
-|G#3|G#4|68|
-|A3|A4|69|
-|A#3|A#4|70|
-|B3|B4|71|
-|C4|C5|72|
-|C#4|C#5|73|
-|D4|D5|74|
-|D#4|D#5|75|
-|E4|E5|76|
-|F4|F5|77|
-|F#4|F#5|78|
-|G4|G5|79|
-|G#4|G#5|80|
-|A4|A5|81|
-|A#4|A#5|82|
-|B4|B5|83|
-|C5|C6|84|
-|C#5|C#6|85|
-|D5|D6|86|
-|D#5|D#6|87|
-|E5|E6|88|
-|F5|F6|89|
-|F#5|F#6|90|
-|G5|G6|91|
-|G#5|G#6|92|
-|A5|A6|93|
-|A#5|A#6|94|
-|B5|B6|95|
-|C6|C7|96|
-|C#6|C#7|97|
-|D6|D7|98|
-|D#6|D#7|99|
-|E6|E7|100|
-|F6|F7|101|
-|F#6|F#7|102|
-|G6|G7|103|
-|G#6|G#7|104|
-|A6|A7|105|
-|A#6|A#7|106|
-|B6|B7|107|
-|C7|C8|108|
-|C#7|C#8|109|
-|D7|D8|110|
-|D#7|D#8|111|
-|E7|E8|112|
-|F7|F8|113|
-|F#7|F#8|114|
-|G7|G8|115|
-|G#7|G#8|116|
-|A7|A8|117|
-|A#7|A#8|118|
-|B7|B8|119|
-|C8|C9|120|
-|C#8|C#9|121|
-|D8|D9|122|
-|D#8|D#9|123|
-|E8|E9|124|
-|F8|F9|125|
-|F#8|F#9|126|
-|G8|G9|127|
+<table>
+<thead>
+<tr>
+<th style="text-align:center">最低音が C-2 の場合</th>
+<th style="text-align:center">最低音が C-1 の場合</th>
+<th style="text-align:center">ノートナンバー</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">C-2</td>
+<td style="text-align:center">C-1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">C#-2</td>
+<td style="text-align:center">C#-1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">D-2</td>
+<td style="text-align:center">D-1</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">D#-2</td>
+<td style="text-align:center">D#-1</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">E-2</td>
+<td style="text-align:center">E-1</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">F-2</td>
+<td style="text-align:center">F-1</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">F#-2</td>
+<td style="text-align:center">F#-1</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">G-2</td>
+<td style="text-align:center">G-1</td>
+<td style="text-align:center">7</td>
+</tr>
+<tr>
+<td style="text-align:center">G#-2</td>
+<td style="text-align:center">G#-1</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">A-2</td>
+<td style="text-align:center">A-1</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">A#-2</td>
+<td style="text-align:center">A#-1</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center">B-2</td>
+<td style="text-align:center">B-1</td>
+<td style="text-align:center">11</td>
+</tr>
+<tr>
+<td style="text-align:center">C-1</td>
+<td style="text-align:center">C0</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td style="text-align:center">C#-1</td>
+<td style="text-align:center">C#0</td>
+<td style="text-align:center">13</td>
+</tr>
+<tr>
+<td style="text-align:center">D-1</td>
+<td style="text-align:center">D0</td>
+<td style="text-align:center">14</td>
+</tr>
+<tr>
+<td style="text-align:center">D#-1</td>
+<td style="text-align:center">D#0</td>
+<td style="text-align:center">15</td>
+</tr>
+<tr>
+<td style="text-align:center">E-1</td>
+<td style="text-align:center">E0</td>
+<td style="text-align:center">16</td>
+</tr>
+<tr>
+<td style="text-align:center">F-1</td>
+<td style="text-align:center">F0</td>
+<td style="text-align:center">17</td>
+</tr>
+<tr>
+<td style="text-align:center">F#-1</td>
+<td style="text-align:center">F#0</td>
+<td style="text-align:center">18</td>
+</tr>
+<tr>
+<td style="text-align:center">G-1</td>
+<td style="text-align:center">G0</td>
+<td style="text-align:center">19</td>
+</tr>
+<tr>
+<td style="text-align:center">G#-1</td>
+<td style="text-align:center">G#0</td>
+<td style="text-align:center">20</td>
+</tr>
+<tr>
+<td style="text-align:center">A-1</td>
+<td style="text-align:center">A0</td>
+<td style="text-align:center">21</td>
+</tr>
+<tr>
+<td style="text-align:center">A#-1</td>
+<td style="text-align:center">A#0</td>
+<td style="text-align:center">22</td>
+</tr>
+<tr>
+<td style="text-align:center">B-1</td>
+<td style="text-align:center">B0</td>
+<td style="text-align:center">23</td>
+</tr>
+<tr>
+<td style="text-align:center">C0</td>
+<td style="text-align:center">C1</td>
+<td style="text-align:center">24</td>
+</tr>
+<tr>
+<td style="text-align:center">C#0</td>
+<td style="text-align:center">C#1</td>
+<td style="text-align:center">25</td>
+</tr>
+<tr>
+<td style="text-align:center">D0</td>
+<td style="text-align:center">D1</td>
+<td style="text-align:center">26</td>
+</tr>
+<tr>
+<td style="text-align:center">D#0</td>
+<td style="text-align:center">D#1</td>
+<td style="text-align:center">27</td>
+</tr>
+<tr>
+<td style="text-align:center">E0</td>
+<td style="text-align:center">E1</td>
+<td style="text-align:center">28</td>
+</tr>
+<tr>
+<td style="text-align:center">F0</td>
+<td style="text-align:center">F1</td>
+<td style="text-align:center">29</td>
+</tr>
+<tr>
+<td style="text-align:center">F#0</td>
+<td style="text-align:center">F#1</td>
+<td style="text-align:center">30</td>
+</tr>
+<tr>
+<td style="text-align:center">G0</td>
+<td style="text-align:center">G1</td>
+<td style="text-align:center">31</td>
+</tr>
+<tr>
+<td style="text-align:center">G#0</td>
+<td style="text-align:center">G#1</td>
+<td style="text-align:center">32</td>
+</tr>
+<tr>
+<td style="text-align:center">A0</td>
+<td style="text-align:center">A1</td>
+<td style="text-align:center">33</td>
+</tr>
+<tr>
+<td style="text-align:center">A#0</td>
+<td style="text-align:center">A#1</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:center">B0</td>
+<td style="text-align:center">B1</td>
+<td style="text-align:center">35</td>
+</tr>
+<tr>
+<td style="text-align:center">C1</td>
+<td style="text-align:center">C2</td>
+<td style="text-align:center">36</td>
+</tr>
+<tr>
+<td style="text-align:center">C#1</td>
+<td style="text-align:center">C#2</td>
+<td style="text-align:center">37</td>
+</tr>
+<tr>
+<td style="text-align:center">D1</td>
+<td style="text-align:center">D2</td>
+<td style="text-align:center">38</td>
+</tr>
+<tr>
+<td style="text-align:center">D#1</td>
+<td style="text-align:center">D#2</td>
+<td style="text-align:center">39</td>
+</tr>
+<tr>
+<td style="text-align:center">E1</td>
+<td style="text-align:center">E2</td>
+<td style="text-align:center">40</td>
+</tr>
+<tr>
+<td style="text-align:center">F1</td>
+<td style="text-align:center">F2</td>
+<td style="text-align:center">41</td>
+</tr>
+<tr>
+<td style="text-align:center">F#1</td>
+<td style="text-align:center">F#2</td>
+<td style="text-align:center">42</td>
+</tr>
+<tr>
+<td style="text-align:center">G1</td>
+<td style="text-align:center">G2</td>
+<td style="text-align:center">43</td>
+</tr>
+<tr>
+<td style="text-align:center">G#1</td>
+<td style="text-align:center">G#2</td>
+<td style="text-align:center">44</td>
+</tr>
+<tr>
+<td style="text-align:center">A1</td>
+<td style="text-align:center">A2</td>
+<td style="text-align:center">45</td>
+</tr>
+<tr>
+<td style="text-align:center">A#1</td>
+<td style="text-align:center">A#2</td>
+<td style="text-align:center">46</td>
+</tr>
+<tr>
+<td style="text-align:center">B1</td>
+<td style="text-align:center">B2</td>
+<td style="text-align:center">47</td>
+</tr>
+<tr>
+<td style="text-align:center">C2</td>
+<td style="text-align:center">C3</td>
+<td style="text-align:center">48</td>
+</tr>
+<tr>
+<td style="text-align:center">C#2</td>
+<td style="text-align:center">C#3</td>
+<td style="text-align:center">49</td>
+</tr>
+<tr>
+<td style="text-align:center">D2</td>
+<td style="text-align:center">D3</td>
+<td style="text-align:center">50</td>
+</tr>
+<tr>
+<td style="text-align:center">D#2</td>
+<td style="text-align:center">D#3</td>
+<td style="text-align:center">51</td>
+</tr>
+<tr>
+<td style="text-align:center">E2</td>
+<td style="text-align:center">E3</td>
+<td style="text-align:center">52</td>
+</tr>
+<tr>
+<td style="text-align:center">F2</td>
+<td style="text-align:center">F3</td>
+<td style="text-align:center">53</td>
+</tr>
+<tr>
+<td style="text-align:center">F#2</td>
+<td style="text-align:center">F#3</td>
+<td style="text-align:center">54</td>
+</tr>
+<tr>
+<td style="text-align:center">G2</td>
+<td style="text-align:center">G3</td>
+<td style="text-align:center">55</td>
+</tr>
+<tr>
+<td style="text-align:center">G#2</td>
+<td style="text-align:center">G#3</td>
+<td style="text-align:center">56</td>
+</tr>
+<tr>
+<td style="text-align:center">A2</td>
+<td style="text-align:center">A3</td>
+<td style="text-align:center">57</td>
+</tr>
+<tr>
+<td style="text-align:center">A#2</td>
+<td style="text-align:center">A#3</td>
+<td style="text-align:center">58</td>
+</tr>
+<tr>
+<td style="text-align:center">B2</td>
+<td style="text-align:center">B3</td>
+<td style="text-align:center">59</td>
+</tr>
+<tr>
+<td style="text-align:center">C3</td>
+<td style="text-align:center">C4</td>
+<td style="text-align:center">60</td>
+</tr>
+<tr>
+<td style="text-align:center">C#3</td>
+<td style="text-align:center">C#4</td>
+<td style="text-align:center">61</td>
+</tr>
+<tr>
+<td style="text-align:center">D3</td>
+<td style="text-align:center">D4</td>
+<td style="text-align:center">62</td>
+</tr>
+<tr>
+<td style="text-align:center">D#3</td>
+<td style="text-align:center">D#4</td>
+<td style="text-align:center">63</td>
+</tr>
+<tr>
+<td style="text-align:center">E3</td>
+<td style="text-align:center">E4</td>
+<td style="text-align:center">64</td>
+</tr>
+<tr>
+<td style="text-align:center">F3</td>
+<td style="text-align:center">F4</td>
+<td style="text-align:center">65</td>
+</tr>
+<tr>
+<td style="text-align:center">F#3</td>
+<td style="text-align:center">F#4</td>
+<td style="text-align:center">66</td>
+</tr>
+<tr>
+<td style="text-align:center">G3</td>
+<td style="text-align:center">G4</td>
+<td style="text-align:center">67</td>
+</tr>
+<tr>
+<td style="text-align:center">G#3</td>
+<td style="text-align:center">G#4</td>
+<td style="text-align:center">68</td>
+</tr>
+<tr>
+<td style="text-align:center">A3</td>
+<td style="text-align:center">A4</td>
+<td style="text-align:center">69</td>
+</tr>
+<tr>
+<td style="text-align:center">A#3</td>
+<td style="text-align:center">A#4</td>
+<td style="text-align:center">70</td>
+</tr>
+<tr>
+<td style="text-align:center">B3</td>
+<td style="text-align:center">B4</td>
+<td style="text-align:center">71</td>
+</tr>
+<tr>
+<td style="text-align:center">C4</td>
+<td style="text-align:center">C5</td>
+<td style="text-align:center">72</td>
+</tr>
+<tr>
+<td style="text-align:center">C#4</td>
+<td style="text-align:center">C#5</td>
+<td style="text-align:center">73</td>
+</tr>
+<tr>
+<td style="text-align:center">D4</td>
+<td style="text-align:center">D5</td>
+<td style="text-align:center">74</td>
+</tr>
+<tr>
+<td style="text-align:center">D#4</td>
+<td style="text-align:center">D#5</td>
+<td style="text-align:center">75</td>
+</tr>
+<tr>
+<td style="text-align:center">E4</td>
+<td style="text-align:center">E5</td>
+<td style="text-align:center">76</td>
+</tr>
+<tr>
+<td style="text-align:center">F4</td>
+<td style="text-align:center">F5</td>
+<td style="text-align:center">77</td>
+</tr>
+<tr>
+<td style="text-align:center">F#4</td>
+<td style="text-align:center">F#5</td>
+<td style="text-align:center">78</td>
+</tr>
+<tr>
+<td style="text-align:center">G4</td>
+<td style="text-align:center">G5</td>
+<td style="text-align:center">79</td>
+</tr>
+<tr>
+<td style="text-align:center">G#4</td>
+<td style="text-align:center">G#5</td>
+<td style="text-align:center">80</td>
+</tr>
+<tr>
+<td style="text-align:center">A4</td>
+<td style="text-align:center">A5</td>
+<td style="text-align:center">81</td>
+</tr>
+<tr>
+<td style="text-align:center">A#4</td>
+<td style="text-align:center">A#5</td>
+<td style="text-align:center">82</td>
+</tr>
+<tr>
+<td style="text-align:center">B4</td>
+<td style="text-align:center">B5</td>
+<td style="text-align:center">83</td>
+</tr>
+<tr>
+<td style="text-align:center">C5</td>
+<td style="text-align:center">C6</td>
+<td style="text-align:center">84</td>
+</tr>
+<tr>
+<td style="text-align:center">C#5</td>
+<td style="text-align:center">C#6</td>
+<td style="text-align:center">85</td>
+</tr>
+<tr>
+<td style="text-align:center">D5</td>
+<td style="text-align:center">D6</td>
+<td style="text-align:center">86</td>
+</tr>
+<tr>
+<td style="text-align:center">D#5</td>
+<td style="text-align:center">D#6</td>
+<td style="text-align:center">87</td>
+</tr>
+<tr>
+<td style="text-align:center">E5</td>
+<td style="text-align:center">E6</td>
+<td style="text-align:center">88</td>
+</tr>
+<tr>
+<td style="text-align:center">F5</td>
+<td style="text-align:center">F6</td>
+<td style="text-align:center">89</td>
+</tr>
+<tr>
+<td style="text-align:center">F#5</td>
+<td style="text-align:center">F#6</td>
+<td style="text-align:center">90</td>
+</tr>
+<tr>
+<td style="text-align:center">G5</td>
+<td style="text-align:center">G6</td>
+<td style="text-align:center">91</td>
+</tr>
+<tr>
+<td style="text-align:center">G#5</td>
+<td style="text-align:center">G#6</td>
+<td style="text-align:center">92</td>
+</tr>
+<tr>
+<td style="text-align:center">A5</td>
+<td style="text-align:center">A6</td>
+<td style="text-align:center">93</td>
+</tr>
+<tr>
+<td style="text-align:center">A#5</td>
+<td style="text-align:center">A#6</td>
+<td style="text-align:center">94</td>
+</tr>
+<tr>
+<td style="text-align:center">B5</td>
+<td style="text-align:center">B6</td>
+<td style="text-align:center">95</td>
+</tr>
+<tr>
+<td style="text-align:center">C6</td>
+<td style="text-align:center">C7</td>
+<td style="text-align:center">96</td>
+</tr>
+<tr>
+<td style="text-align:center">C#6</td>
+<td style="text-align:center">C#7</td>
+<td style="text-align:center">97</td>
+</tr>
+<tr>
+<td style="text-align:center">D6</td>
+<td style="text-align:center">D7</td>
+<td style="text-align:center">98</td>
+</tr>
+<tr>
+<td style="text-align:center">D#6</td>
+<td style="text-align:center">D#7</td>
+<td style="text-align:center">99</td>
+</tr>
+<tr>
+<td style="text-align:center">E6</td>
+<td style="text-align:center">E7</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:center">F6</td>
+<td style="text-align:center">F7</td>
+<td style="text-align:center">101</td>
+</tr>
+<tr>
+<td style="text-align:center">F#6</td>
+<td style="text-align:center">F#7</td>
+<td style="text-align:center">102</td>
+</tr>
+<tr>
+<td style="text-align:center">G6</td>
+<td style="text-align:center">G7</td>
+<td style="text-align:center">103</td>
+</tr>
+<tr>
+<td style="text-align:center">G#6</td>
+<td style="text-align:center">G#7</td>
+<td style="text-align:center">104</td>
+</tr>
+<tr>
+<td style="text-align:center">A6</td>
+<td style="text-align:center">A7</td>
+<td style="text-align:center">105</td>
+</tr>
+<tr>
+<td style="text-align:center">A#6</td>
+<td style="text-align:center">A#7</td>
+<td style="text-align:center">106</td>
+</tr>
+<tr>
+<td style="text-align:center">B6</td>
+<td style="text-align:center">B7</td>
+<td style="text-align:center">107</td>
+</tr>
+<tr>
+<td style="text-align:center">C7</td>
+<td style="text-align:center">C8</td>
+<td style="text-align:center">108</td>
+</tr>
+<tr>
+<td style="text-align:center">C#7</td>
+<td style="text-align:center">C#8</td>
+<td style="text-align:center">109</td>
+</tr>
+<tr>
+<td style="text-align:center">D7</td>
+<td style="text-align:center">D8</td>
+<td style="text-align:center">110</td>
+</tr>
+<tr>
+<td style="text-align:center">D#7</td>
+<td style="text-align:center">D#8</td>
+<td style="text-align:center">111</td>
+</tr>
+<tr>
+<td style="text-align:center">E7</td>
+<td style="text-align:center">E8</td>
+<td style="text-align:center">112</td>
+</tr>
+<tr>
+<td style="text-align:center">F7</td>
+<td style="text-align:center">F8</td>
+<td style="text-align:center">113</td>
+</tr>
+<tr>
+<td style="text-align:center">F#7</td>
+<td style="text-align:center">F#8</td>
+<td style="text-align:center">114</td>
+</tr>
+<tr>
+<td style="text-align:center">G7</td>
+<td style="text-align:center">G8</td>
+<td style="text-align:center">115</td>
+</tr>
+<tr>
+<td style="text-align:center">G#7</td>
+<td style="text-align:center">G#8</td>
+<td style="text-align:center">116</td>
+</tr>
+<tr>
+<td style="text-align:center">A7</td>
+<td style="text-align:center">A8</td>
+<td style="text-align:center">117</td>
+</tr>
+<tr>
+<td style="text-align:center">A#7</td>
+<td style="text-align:center">A#8</td>
+<td style="text-align:center">118</td>
+</tr>
+<tr>
+<td style="text-align:center">B7</td>
+<td style="text-align:center">B8</td>
+<td style="text-align:center">119</td>
+</tr>
+<tr>
+<td style="text-align:center">C8</td>
+<td style="text-align:center">C9</td>
+<td style="text-align:center">120</td>
+</tr>
+<tr>
+<td style="text-align:center">C#8</td>
+<td style="text-align:center">C#9</td>
+<td style="text-align:center">121</td>
+</tr>
+<tr>
+<td style="text-align:center">D8</td>
+<td style="text-align:center">D9</td>
+<td style="text-align:center">122</td>
+</tr>
+<tr>
+<td style="text-align:center">D#8</td>
+<td style="text-align:center">D#9</td>
+<td style="text-align:center">123</td>
+</tr>
+<tr>
+<td style="text-align:center">E8</td>
+<td style="text-align:center">E9</td>
+<td style="text-align:center">124</td>
+</tr>
+<tr>
+<td style="text-align:center">F8</td>
+<td style="text-align:center">F9</td>
+<td style="text-align:center">125</td>
+</tr>
+<tr>
+<td style="text-align:center">F#8</td>
+<td style="text-align:center">F#9</td>
+<td style="text-align:center">126</td>
+</tr>
+<tr>
+<td style="text-align:center">G8</td>
+<td style="text-align:center">G9</td>
+<td style="text-align:center">127</td>
+</tr>
+</tbody>
+</table>
