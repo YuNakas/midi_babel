@@ -43,7 +43,7 @@ def top_view(page_go) :
                         width = 320,
                         content = ft.TextButton(
                             text = "マニュアル(外部リンク)",
-                            url = "mock"
+                            url = "https://yunakas.github.io/midi_babel/midi_babel_manual/"
                         )
                     )
                 ], alignment=ft.MainAxisAlignment.CENTER)
