@@ -16,7 +16,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from module.ui.pages import top, midi, select_midi_track, key_mapping_from, key_mapping_to,\
-    create_key_mapping, edit_key_mapping, generate_converter, convert_end, file_output, midi_file_output
+    create_key_mapping, edit_key_mapping, generate_converter, convert_end, file_output, midi_file_output,\
+    appendix
 from gv import g
 
 def create_view(page):
@@ -64,6 +65,10 @@ def create_view(page):
         if page.route == "/midi_file_output":
             page.views.append(
                 midi_file_output.midi_file_output_view(page, return_top)
+            )
+        if page.route == "/appendix":
+            page.views.append(
+                appendix.appendix_view(page.go)
             )
         page.update()
     

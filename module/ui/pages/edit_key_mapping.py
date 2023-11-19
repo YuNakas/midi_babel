@@ -71,7 +71,10 @@ def edit_key_mapping_view(page_go):
                 ft.DataCell(ft.OutlinedButton(
                     content = ft.Text("削除"),
                     data = keyStr,
-                    style = ft.ButtonStyle(color=ft.colors.RED),
+                    style = ft.ButtonStyle(
+                        color=ft.colors.RED,
+                        shape=ft.RoundedRectangleBorder(radius=8)
+                    ),
                     on_click = row_delete
                 ))
             ]
