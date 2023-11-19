@@ -7,7 +7,7 @@ on:
 
 jobs:  
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: windows-2022
     steps:
     - uses: actions/checkout@v3
     - name: get tag name
@@ -23,10 +23,17 @@ jobs:
         pipenv install
     - name: Build package
       run: pipenv run build
+    - name: get_version
+      id: get_version
+      shell: cmd
+      run: |
+        set A="::set-output name=TAG::"
+        set B=${{github.ref}}
+        echo %A:"=%%B:refs/tags/=%
     - name: Zip files
       run: |
         cd .\build\exe.win-amd64-3.11\
-        compress-archive -Path .\* -DestinationPath MIDI_BABEL_${{env.TAG_NAME}}.zip
+        compress-archive -Path .\* -DestinationPath MIDI_BABEL_${{ steps.get_version.outputs.TAG }}.zip
       shell: pwsh
     - name: Create Release
       id: create_release
@@ -49,6 +56,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: .\build\exe.win-amd64-3.11\MIDI_BABEL__${{env.TAG_NAME}}.zip
-        asset_name: MIDI_BABEL__${{env.TAG_NAME}}.zip
+        asset_path: .\build\exe.win-amd64-3.11\MIDI_BABEL_${{ steps.get_version.outputs.TAG }}.zip
+        asset_name: MIDI_BABEL_${{ steps.get_version.outputs.TAG }}.zip
         asset_content_type: application/zip
