@@ -50,7 +50,7 @@ def midi_converter(converted_midi_filepath: str):
                 new_message = msg
                 new_message.note = msg.note + 12
                 new_track.append(msg)
-    if g.MY_STATE.get_convert_mode() == "octave_up":
+    if g.MY_STATE.get_convert_mode() == "octave_down":
         for msg in g.MY_MIDI.get_selected_track():
             if type(msg) == mido.messages.messages.Message:
                 new_message = msg
