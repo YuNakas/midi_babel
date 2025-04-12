@@ -30,7 +30,9 @@ def midi_converter(converted_midi_filepath: str):
         converter = g.MY_STATE.get_midi_map_obj()
         for msg in g.MY_MIDI.get_selected_track():
             if type(msg) == mido.messages.messages.Message:
-                if str(msg.note) in converter:
+                if msg.type != "note_on" and msg.type != "note_off":
+                    new_track.append(msg)
+                elif str(msg.note) in converter:
                     new_message = msg
                     new_message.note = int(converter[str(msg.note)])
                     new_track.append(new_message)
